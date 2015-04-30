@@ -33,10 +33,14 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
     
+    [self.player setRandomColour];
+    /*
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
         
+        
     }
+    */
 }
 
 -(void)update:(CFTimeInterval)currentTime {

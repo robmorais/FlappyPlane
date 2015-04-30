@@ -9,5 +9,5 @@
 #import <SpriteKit/SpriteKit.h>
 
 @interface FPPlane : SKSpriteNode
-
+- (void)setRandomColour;
 @end
