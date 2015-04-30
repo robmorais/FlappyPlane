@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A52A8FF41AF259A50036FD81 /* FPPlane.m in Sources */ = {isa = PBXBuildFile; fileRef = A52A8FF31AF259A50036FD81 /* FPPlane.m */; };
+		A56AE9801AF14BA300063434 /* Planes.atlas in Resources */ = {isa = PBXBuildFile; fileRef = A56AE97F1AF14BA300063434 /* Planes.atlas */; };
 		A5E27A311AF1391500225A19 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E27A301AF1391500225A19 /* main.m */; };
 		A5E27A341AF1391500225A19 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E27A331AF1391500225A19 /* AppDelegate.m */; };
 		A5E27A371AF1391500225A19 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E27A361AF1391500225A19 /* GameScene.m */; };
@@ -29,6 +31,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A52A8FF21AF259A50036FD81 /* FPPlane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPPlane.h; sourceTree = "<group>"; };
+		A52A8FF31AF259A50036FD81 /* FPPlane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPPlane.m; sourceTree = "<group>"; };
+		A56AE97F1AF14BA300063434 /* Planes.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Planes.atlas; sourceTree = "<group>"; };
 		A5E27A2B1AF1391500225A19 /* FlappyPlane.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlappyPlane.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5E27A2F1AF1391500225A19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5E27A301AF1391500225A19 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -65,6 +70,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A52A8FF11AF259620036FD81 /* Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				A52A8FF21AF259A50036FD81 /* FPPlane.h */,
+				A52A8FF31AF259A50036FD81 /* FPPlane.m */,
+			);
+			name = Nodes;
+			sourceTree = "<group>";
+		};
 		A5E27A221AF1391500225A19 = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +100,10 @@
 		A5E27A2D1AF1391500225A19 /* FlappyPlane */ = {
 			isa = PBXGroup;
 			children = (
+				A5E27A2E1AF1391500225A19 /* Supporting Files */,
+				A56AE97F1AF14BA300063434 /* Planes.atlas */,
+				A5E27A401AF1391500225A19 /* Images.xcassets */,
+				A52A8FF11AF259620036FD81 /* Nodes */,
 				A5E27A321AF1391500225A19 /* AppDelegate.h */,
 				A5E27A331AF1391500225A19 /* AppDelegate.m */,
 				A5E27A351AF1391500225A19 /* GameScene.h */,
@@ -94,9 +112,7 @@
 				A5E27A3A1AF1391500225A19 /* GameViewController.h */,
 				A5E27A3B1AF1391500225A19 /* GameViewController.m */,
 				A5E27A3D1AF1391500225A19 /* Main.storyboard */,
-				A5E27A401AF1391500225A19 /* Images.xcassets */,
 				A5E27A421AF1391500225A19 /* LaunchScreen.xib */,
-				A5E27A2E1AF1391500225A19 /* Supporting Files */,
 			);
 			path = FlappyPlane;
 			sourceTree = "<group>";
@@ -210,6 +226,7 @@
 				A5E27A441AF1391500225A19 /* LaunchScreen.xib in Resources */,
 				A5E27A411AF1391500225A19 /* Images.xcassets in Resources */,
 				A5E27A391AF1391500225A19 /* GameScene.sks in Resources */,
+				A56AE9801AF14BA300063434 /* Planes.atlas in Resources */,
 				A5E27A3F1AF1391500225A19 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -231,6 +248,7 @@
 				A5E27A3C1AF1391500225A19 /* GameViewController.m in Sources */,
 				A5E27A341AF1391500225A19 /* AppDelegate.m in Sources */,
 				A5E27A371AF1391500225A19 /* GameScene.m in Sources */,
+				A52A8FF41AF259A50036FD81 /* FPPlane.m in Sources */,
 				A5E27A311AF1391500225A19 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -426,6 +444,7 @@
 				A5E27A551AF1391600225A19 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A5E27A561AF1391600225A19 /* Build configuration list for PBXNativeTarget "FlappyPlaneTests" */ = {
 			isa = XCConfigurationList;
@@ -434,6 +453,7 @@
 				A5E27A581AF1391600225A19 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
