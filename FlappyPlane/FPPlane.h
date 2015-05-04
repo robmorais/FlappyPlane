@@ -9,5 +9,8 @@
 #import <SpriteKit/SpriteKit.h>
 
 @interface FPPlane : SKSpriteNode
+
+@property (nonatomic) BOOL engineRunning;
+
 - (void)setRandomColour;
 @end

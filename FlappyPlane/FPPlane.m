@@ -14,6 +14,8 @@
 
 @end
 
+static NSString *const kPlaneAnimationKey = @"FPPlaneAnimation";
+
 @implementation FPPlane
 
 - (instancetype)init
@@ -59,7 +61,25 @@
 
 - (void)setRandomColour
 {
-    [self runAction:[self.planeAnimations objectAtIndex:arc4random_uniform((int)self.planeAnimations.count)]];
+    [self removeActionForKey:kPlaneAnimationKey];
+    SKAction *animation = [self.planeAnimations objectAtIndex:arc4random_uniform((int)self.planeAnimations.count)];
+    [self runAction:animation withKey:kPlaneAnimationKey];
+    
+    if (!self.engineRunning) {
+        [self actionForKey:kPlaneAnimationKey].speed = 0.0;
+    }
+}
+
+- (void)setEngineRunning:(BOOL)engineRunning
+{
+    _engineRunning = engineRunning;
+    
+    if (engineRunning) {
+        [self actionForKey:kPlaneAnimationKey].speed = 1.0;
+    }
+    else {
+        [self actionForKey:kPlaneAnimationKey].speed = 0.0;
+    }
 }
 
 @end
