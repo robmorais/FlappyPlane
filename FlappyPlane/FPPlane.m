@@ -11,6 +11,8 @@
 @interface FPPlane()
 
 @property (nonatomic) NSMutableArray *planeAnimations;
+@property (nonatomic) SKEmitterNode *puffTrailEmitter;
+@property (nonatomic) CGFloat puffTrailBirthrate;
 
 @end
 
@@ -31,6 +33,16 @@ static NSString *const kPlaneAnimationKey = @"FPPlaneAnimation";
         for (NSString *key in animationsDictionary) {
             [_planeAnimations addObject:[self animationFromArray:animationsDictionary[key] withDuration:0.4]];
         }
+        
+        // Setup Puff trail emmiter node
+        NSString *particleFile = [[NSBundle mainBundle] pathForResource:@"PlanePuffTrail" ofType:@"sks"];
+        _puffTrailEmitter = [NSKeyedUnarchiver unarchiveObjectWithFile:particleFile];
+        _puffTrailEmitter.position = CGPointMake(-self.size.width * 0.5, 0.0);
+        [self addChild:_puffTrailEmitter];
+        
+        // Store original birthrate and turn it off
+        self.puffTrailBirthrate = _puffTrailEmitter.particleBirthRate;
+        self.puffTrailEmitter.particleBirthRate = 0.0;
         
         [self setRandomColour];
     }
@@ -76,9 +88,11 @@ static NSString *const kPlaneAnimationKey = @"FPPlaneAnimation";
     
     if (engineRunning) {
         [self actionForKey:kPlaneAnimationKey].speed = 1.0;
+        self.puffTrailEmitter.particleBirthRate = self.puffTrailBirthrate;
     }
     else {
         [self actionForKey:kPlaneAnimationKey].speed = 0.0;
+        self.puffTrailEmitter.particleBirthRate = 0.0;
     }
 }
 
