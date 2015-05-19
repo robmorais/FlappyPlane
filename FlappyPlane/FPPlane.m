@@ -27,6 +27,9 @@ static NSString *const kPlaneAnimationKey = @"FPPlaneAnimation";
     if (self) {
         _planeAnimations = [NSMutableArray array];
         
+        // Setup Physic body
+        self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:self.size.width * 0.5];
+        
         // Fill Animations Array
         NSString *path = [[NSBundle mainBundle] pathForResource:@"PlaneAnimations" ofType:@"plist"];
         NSDictionary *animationsDictionary = [NSDictionary dictionaryWithContentsOfFile:path];
@@ -89,10 +92,18 @@ static NSString *const kPlaneAnimationKey = @"FPPlaneAnimation";
     if (engineRunning) {
         [self actionForKey:kPlaneAnimationKey].speed = 1.0;
         self.puffTrailEmitter.particleBirthRate = self.puffTrailBirthrate;
+        self.puffTrailEmitter.targetNode = self.parent;
     }
     else {
         [self actionForKey:kPlaneAnimationKey].speed = 0.0;
         self.puffTrailEmitter.particleBirthRate = 0.0;
+    }
+}
+
+- (void)update
+{
+    if (self.accelerating) {
+        [self.physicsBody applyForce:CGVectorMake(0.0, 100)];
     }
 }
 

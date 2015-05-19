@@ -19,34 +19,40 @@
 @implementation GameScene
 
 -(void)didMoveToView:(SKView *)view {
-    /* Setup your scene here */
+    // Setup physics
+    self.physicsWorld.gravity = CGVectorMake(0.0, -5.5);
     
     self.world = [SKNode node];
     [self addChild:self.world];
     
     self.player = [FPPlane new];
     self.player.position = CGPointMake(self.size.width * 0.5, self.size.height * 0.5);
+    self.player.physicsBody.affectedByGravity = NO;
     [self.world addChild:self.player];
     
+    self.player.engineRunning = YES;
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
     
-    self.player.engineRunning = !self.player.engineRunning;
-    [self.player setRandomColour];
-    
-    /*
-    for (UITouch *touch in touches) {
-        CGPoint location = [touch locationInNode:self];
-        
-        
+    if (touches.count > 0) {
+        self.player.accelerating = YES;
+        self.player.physicsBody.affectedByGravity = YES;
     }
-    */
+    
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if (touches.count > 0) {
+        self.player.accelerating = NO;
+    }
 }
 
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
+    [self.player update];
 }
 
 @end
