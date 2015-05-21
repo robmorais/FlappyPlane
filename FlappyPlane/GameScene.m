@@ -23,7 +23,10 @@ static const CGFloat kMinFPS = 10.0/60.0;
 @implementation GameScene
 
 -(void)didMoveToView:(SKView *)view {
-    self.size = view.bounds.size; // BUG FIX option 2
+    //self.size = view.bounds.size; // BUG FIX option 2
+    
+    // Set background color to Sky Blue
+    self.backgroundColor = [SKColor colorWithRed:213./255. green:237./255. blue:247./255. alpha:1.0];
     
     //Get Atlas File
     SKTextureAtlas *graphics = [SKTextureAtlas atlasNamed:@"Graphics"];
