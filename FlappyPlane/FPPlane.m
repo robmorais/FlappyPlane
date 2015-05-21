@@ -59,7 +59,7 @@ static NSString *const kPlaneAnimationKey = @"FPPlaneAnimation";
     NSMutableArray *frames = [NSMutableArray arrayWithCapacity:textureNames.count];
     
     // Get plane atlas
-    SKTextureAtlas *planeAtlas = [SKTextureAtlas atlasNamed:@"Planes"];
+    SKTextureAtlas *planeAtlas = [SKTextureAtlas atlasNamed:@"Graphics"];
     
     // Loop through texture names
     for (NSString *textureName in textureNames) {
