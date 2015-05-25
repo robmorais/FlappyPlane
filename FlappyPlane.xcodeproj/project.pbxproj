@@ -22,6 +22,7 @@
 		A5E27A411AF1391500225A19 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5E27A401AF1391500225A19 /* Images.xcassets */; };
 		A5E27A441AF1391500225A19 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5E27A421AF1391500225A19 /* LaunchScreen.xib */; };
 		A5E27A501AF1391600225A19 /* FlappyPlaneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E27A4F1AF1391600225A19 /* FlappyPlaneTests.m */; };
+		A5E4E5031B13204100F12156 /* FPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E4E5021B13204100F12156 /* FPConstants.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,8 @@
 		A5E27A491AF1391600225A19 /* FlappyPlaneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlappyPlaneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5E27A4E1AF1391600225A19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5E27A4F1AF1391600225A19 /* FlappyPlaneTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlappyPlaneTests.m; sourceTree = "<group>"; };
+		A5E4E5011B13204100F12156 /* FPConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPConstants.h; sourceTree = "<group>"; };
+		A5E4E5021B13204100F12156 /* FPConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPConstants.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +157,8 @@
 			children = (
 				A5E27A2F1AF1391500225A19 /* Info.plist */,
 				A5E27A301AF1391500225A19 /* main.m */,
+				A5E4E5011B13204100F12156 /* FPConstants.h */,
+				A5E4E5021B13204100F12156 /* FPConstants.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -282,6 +287,7 @@
 				A5E27A3C1AF1391500225A19 /* GameViewController.m in Sources */,
 				A5E27A341AF1391500225A19 /* AppDelegate.m in Sources */,
 				A5E27A371AF1391500225A19 /* GameScene.m in Sources */,
+				A5E4E5031B13204100F12156 /* FPConstants.m in Sources */,
 				A52A8FF41AF259A50036FD81 /* FPPlane.m in Sources */,
 				A5E27A311AF1391500225A19 /* main.m in Sources */,
 				A5E015BD1B0B75E800184787 /* FPScrollingLayer.m in Sources */,

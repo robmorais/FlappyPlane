@@ -9,6 +9,7 @@
 #import "GameScene.h"
 #import "FPPlane.h"
 #import "FPScrollingLayer.h"
+#import "FPConstants.h"
 
 @interface GameScene()
 
@@ -34,6 +35,7 @@ static const CGFloat kMinFPS = 10.0/60.0;
     
     // Setup physics
     self.physicsWorld.gravity = CGVectorMake(0.0, -4.5);
+    self.physicsWorld.contactDelegate = self;
     
     self.world = [SKNode node];
     [self addChild:self.world];
@@ -68,6 +70,42 @@ static const CGFloat kMinFPS = 10.0/60.0;
     self.player.engineRunning = YES;
 }
 
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    /* Called when a touch begins */
+    
+    if (touches.count > 0) {
+        self.player.accelerating = YES;
+        self.player.physicsBody.affectedByGravity = YES;
+    }
+    
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if (touches.count > 0) {
+        self.player.accelerating = NO;
+    }
+}
+
+- (void)didBeginContact:(SKPhysicsContact *)contact
+{
+    
+}
+
+-(void)update:(CFTimeInterval)currentTime {
+    /* Called before each frame is rendered */
+    static NSTimeInterval lastCallTime;
+    NSTimeInterval timeElapsed = currentTime - lastCallTime;
+    if (timeElapsed > kMinFPS) timeElapsed = kMinFPS;
+    lastCallTime = currentTime;
+    
+    [self.player update];
+    [self.background updateSinceTimeElapsed:timeElapsed];
+    [self.foreground updateSinceTimeElapsed:timeElapsed];
+}
+
+#pragma mark Helper Methods
+
 - (SKSpriteNode *)generateGroundTile
 {
     SKTextureAtlas *graphics = [SKTextureAtlas atlasNamed:@"Graphics"];
@@ -94,45 +132,17 @@ static const CGFloat kMinFPS = 10.0/60.0;
     CGPathAddLineToPoint(path, NULL, 0 - offsetX, 17 - offsetY);
     
     sprite.physicsBody = [SKPhysicsBody bodyWithEdgeChainFromPath:path];
+    sprite.physicsBody.categoryBitMask = kFPCategoryGround;
     
     /* Bugged, not showing on simulator
-    SKShapeNode *shape = [SKShapeNode node];
-    shape.path = path;
-    shape.strokeColor = [SKColor redColor];
-    shape.lineWidth = 1.0;
-    [sprite addChild:shape];
-    */
+     SKShapeNode *shape = [SKShapeNode node];
+     shape.path = path;
+     shape.strokeColor = [SKColor redColor];
+     shape.lineWidth = 1.0;
+     [sprite addChild:shape];
+     */
     
     return sprite;
-}
-
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    /* Called when a touch begins */
-    
-    if (touches.count > 0) {
-        self.player.accelerating = YES;
-        self.player.physicsBody.affectedByGravity = YES;
-    }
-    
-}
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    if (touches.count > 0) {
-        self.player.accelerating = NO;
-    }
-}
-
--(void)update:(CFTimeInterval)currentTime {
-    /* Called before each frame is rendered */
-    static NSTimeInterval lastCallTime;
-    NSTimeInterval timeElapsed = currentTime - lastCallTime;
-    if (timeElapsed > kMinFPS) timeElapsed = kMinFPS;
-    lastCallTime = currentTime;
-    
-    [self.player update];
-    [self.background updateSinceTimeElapsed:timeElapsed];
-    [self.foreground updateSinceTimeElapsed:timeElapsed];
 }
 
 @end

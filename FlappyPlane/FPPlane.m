@@ -7,6 +7,7 @@
 //
 
 #import "FPPlane.h"
+#import "FPConstants.h"
 
 @interface FPPlane()
 
@@ -28,11 +29,29 @@ static NSString *const kPlaneAnimationKey = @"FPPlaneAnimation";
         _planeAnimations = [NSMutableArray array];
         
         // Setup Physic body
-        self.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:self.size.width * 0.5];
+        CGFloat offsetX = self.frame.size.width * self.anchorPoint.x;
+        CGFloat offsetY = self.frame.size.height * self.anchorPoint.y;
+        
+        CGMutablePathRef path = CGPathCreateMutable();
+        
+        CGPathMoveToPoint(path, NULL, 43 - offsetX, 16 - offsetY);
+        CGPathAddLineToPoint(path, NULL, 36 - offsetX, 35 - offsetY);
+        CGPathAddLineToPoint(path, NULL, 11 - offsetX, 36 - offsetY);
+        CGPathAddLineToPoint(path, NULL, 0 - offsetX, 27 - offsetY);
+        CGPathAddLineToPoint(path, NULL, 11 - offsetX, 5 - offsetY);
+        CGPathAddLineToPoint(path, NULL, 29 - offsetX, 0 - offsetY);
+        CGPathAddLineToPoint(path, NULL, 38 - offsetX, 7 - offsetY);
+        
+        CGPathCloseSubpath(path);
+        
+        self.physicsBody = [SKPhysicsBody bodyWithPolygonFromPath:path];
+        self.physicsBody.mass = 0.08;
+        self.physicsBody.categoryBitMask = kFPCategoryPlane;
+        self.physicsBody.contactTestBitMask = kFPCategoryGround;
         
         // Fill Animations Array
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"PlaneAnimations" ofType:@"plist"];
-        NSDictionary *animationsDictionary = [NSDictionary dictionaryWithContentsOfFile:path];
+        NSString *animationPlistPath = [[NSBundle mainBundle] pathForResource:@"PlaneAnimations" ofType:@"plist"];
+        NSDictionary *animationsDictionary = [NSDictionary dictionaryWithContentsOfFile:animationPlistPath];
         for (NSString *key in animationsDictionary) {
             [_planeAnimations addObject:[self animationFromArray:animationsDictionary[key] withDuration:0.4]];
         }
