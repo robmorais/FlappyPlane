@@ -15,6 +15,7 @@
 @property (nonatomic) SKNode *world;
 @property (nonatomic) FPPlane *player;
 @property (nonatomic) FPScrollingLayer *background;
+@property (nonatomic) FPScrollingLayer *foreground;
 
 @end
 
@@ -49,6 +50,15 @@ static const CGFloat kMinFPS = 10.0/60.0;
     _background.scrolling = YES;
     [_world addChild:_background];
     
+    // Setup Foreground Layer
+    _foreground = [[FPScrollingLayer alloc] initWithTiles:@[[self generateGroundTile],
+                                                            [self generateGroundTile],
+                                                            [self generateGroundTile]]];
+    _foreground.position = CGPointZero;
+    _foreground.horizontalScrollSpeed = -80.0;
+    _foreground.scrolling = YES;
+    [_world addChild:_foreground];
+    
     // Setup Player
     self.player = [FPPlane new];
     self.player.position = CGPointMake(self.size.width * 0.5, self.size.height * 0.5);
@@ -56,6 +66,44 @@ static const CGFloat kMinFPS = 10.0/60.0;
     [self.world addChild:self.player];
     
     self.player.engineRunning = YES;
+}
+
+- (SKSpriteNode *)generateGroundTile
+{
+    SKTextureAtlas *graphics = [SKTextureAtlas atlasNamed:@"Graphics"];
+    SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithTexture:[graphics textureNamed:@"groundGrass"]];
+    sprite.anchorPoint = CGPointZero; // The FPScrollingLayer will set it, so I am setting it here to get the right path
+    // Path
+    CGFloat offsetX = sprite.frame.size.width * sprite.anchorPoint.x;
+    CGFloat offsetY = sprite.frame.size.height * sprite.anchorPoint.y;
+    
+    CGMutablePathRef path = CGPathCreateMutable();
+    
+    CGPathMoveToPoint(path, NULL, 403 - offsetX, 17 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 372 - offsetX, 34 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 329 - offsetX, 33 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 286 - offsetX, 8 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 235 - offsetX, 13 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 219 - offsetX, 29 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 185 - offsetX, 29 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 154 - offsetX, 22 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 124 - offsetX, 33 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 78 - offsetX, 31 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 45 - offsetX, 13 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 17 - offsetX, 18 - offsetY);
+    CGPathAddLineToPoint(path, NULL, 0 - offsetX, 17 - offsetY);
+    
+    sprite.physicsBody = [SKPhysicsBody bodyWithEdgeChainFromPath:path];
+    
+    /* Bugged, not showing on simulator
+    SKShapeNode *shape = [SKShapeNode node];
+    shape.path = path;
+    shape.strokeColor = [SKColor redColor];
+    shape.lineWidth = 1.0;
+    [sprite addChild:shape];
+    */
+    
+    return sprite;
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -84,6 +132,7 @@ static const CGFloat kMinFPS = 10.0/60.0;
     
     [self.player update];
     [self.background updateSinceTimeElapsed:timeElapsed];
+    [self.foreground updateSinceTimeElapsed:timeElapsed];
 }
 
 @end
