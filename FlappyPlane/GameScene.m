@@ -89,7 +89,12 @@ static const CGFloat kMinFPS = 10.0/60.0;
 
 - (void)didBeginContact:(SKPhysicsContact *)contact
 {
-    
+    if (contact.bodyA.categoryBitMask == kFPCategoryPlane) {
+        [self.player collide:contact.bodyB];
+    }
+    else if (contact.bodyB.categoryBitMask == kFPCategoryPlane) {
+        [self.player collide:contact.bodyA];
+    }
 }
 
 -(void)update:(CFTimeInterval)currentTime {
@@ -100,8 +105,11 @@ static const CGFloat kMinFPS = 10.0/60.0;
     lastCallTime = currentTime;
     
     [self.player update];
-    [self.background updateSinceTimeElapsed:timeElapsed];
-    [self.foreground updateSinceTimeElapsed:timeElapsed];
+    if (!self.player.crashed) {
+        [self.background updateSinceTimeElapsed:timeElapsed];
+        [self.foreground updateSinceTimeElapsed:timeElapsed];
+    }
+    
 }
 
 #pragma mark Helper Methods
