@@ -133,6 +133,17 @@ static NSString *const kPlaneAnimationKey = @"FPPlaneAnimation";
     }
 }
 
+- (void)reset
+{
+    self.crashed = NO;
+    self.engineRunning = YES;
+    self.zRotation = 0.0;
+    self.physicsBody.velocity = CGVectorMake(0.0, 0.0);
+    self.physicsBody.angularVelocity = 0.0;
+    
+    [self setRandomColour];
+}
+
 - (void)collide:(SKPhysicsBody *)body
 {
     // Ignore collisions if already crashed

@@ -11,5 +11,5 @@
 @interface FPScrollingLayer : FPScrollingNode
 
 - (instancetype)initWithTiles:(NSArray *)tileSpriteNodes;
-
+- (void)layoutTiles;
 @end

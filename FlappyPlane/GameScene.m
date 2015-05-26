@@ -61,26 +61,42 @@ static const CGFloat kMinFPS = 10.0/60.0;
     _foreground.scrolling = YES;
     [_world addChild:_foreground];
     
-    // Setup Player
+    // Add Player
     self.player = [FPPlane new];
-    self.player.position = CGPointMake(self.size.width * 0.5, self.size.height * 0.5);
-    self.player.physicsBody.affectedByGravity = NO;
     [self.world addChild:self.player];
     
-    self.player.engineRunning = YES;
+    [self newGame];
+}
+
+-(void)newGame
+{
+    // Reset Layers
+    self.foreground.position = CGPointZero;
+    [self.foreground layoutTiles];
+    self.background.position = CGPointZero;
+    [self.background layoutTiles];
+    
+    // Reset Player
+    self.player.position = CGPointMake(self.size.width * 0.5, self.size.height * 0.5);
+    self.player.physicsBody.affectedByGravity = NO;
+    [self.player reset];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
     
     if (touches.count > 0) {
-        self.player.accelerating = YES;
-        self.player.physicsBody.affectedByGravity = YES;
+        if (self.player.crashed) {
+            [self newGame];
+        } else {
+            self.player.accelerating = YES;
+            self.player.physicsBody.affectedByGravity = YES;
+        }
     }
     
 }
 
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     if (touches.count > 0) {
         self.player.accelerating = NO;
