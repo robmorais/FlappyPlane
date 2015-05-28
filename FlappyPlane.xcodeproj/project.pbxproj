@@ -88,10 +88,6 @@
 			children = (
 				A52A8FF21AF259A50036FD81 /* FPPlane.h */,
 				A52A8FF31AF259A50036FD81 /* FPPlane.m */,
-				A59521B71B0B5C8000DD124D /* FPScrollingNode.h */,
-				A59521B81B0B5C8000DD124D /* FPScrollingNode.m */,
-				A5E015BB1B0B75E800184787 /* FPScrollingLayer.h */,
-				A5E015BC1B0B75E800184787 /* FPScrollingLayer.m */,
 			);
 			name = Nodes;
 			sourceTree = "<group>";
@@ -137,6 +133,7 @@
 				A56AE97F1AF14BA300063434 /* Graphics.atlas */,
 				A5E27A401AF1391500225A19 /* Images.xcassets */,
 				A5D985731AF8CE0400685269 /* Particle Effects */,
+				A5E4E5041B17734000F12156 /* Layers */,
 				A52A8FF11AF259620036FD81 /* Nodes */,
 				A5703FAE1AF2910700B2632C /* Animations */,
 				A5E27A321AF1391500225A19 /* AppDelegate.h */,
@@ -178,6 +175,17 @@
 				A5E27A4E1AF1391600225A19 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A5E4E5041B17734000F12156 /* Layers */ = {
+			isa = PBXGroup;
+			children = (
+				A59521B71B0B5C8000DD124D /* FPScrollingNode.h */,
+				A59521B81B0B5C8000DD124D /* FPScrollingNode.m */,
+				A5E015BB1B0B75E800184787 /* FPScrollingLayer.h */,
+				A5E015BC1B0B75E800184787 /* FPScrollingLayer.m */,
+			);
+			name = Layers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
