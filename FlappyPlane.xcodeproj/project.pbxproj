@@ -23,6 +23,7 @@
 		A5E27A441AF1391500225A19 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5E27A421AF1391500225A19 /* LaunchScreen.xib */; };
 		A5E27A501AF1391600225A19 /* FlappyPlaneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E27A4F1AF1391600225A19 /* FlappyPlaneTests.m */; };
 		A5E4E5031B13204100F12156 /* FPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E4E5021B13204100F12156 /* FPConstants.m */; };
+		A5E4E5071B17741800F12156 /* FPObstacleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E4E5061B17741800F12156 /* FPObstacleLayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,8 @@
 		A5E27A4F1AF1391600225A19 /* FlappyPlaneTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlappyPlaneTests.m; sourceTree = "<group>"; };
 		A5E4E5011B13204100F12156 /* FPConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPConstants.h; sourceTree = "<group>"; };
 		A5E4E5021B13204100F12156 /* FPConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPConstants.m; sourceTree = "<group>"; };
+		A5E4E5051B17741800F12156 /* FPObstacleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPObstacleLayer.h; sourceTree = "<group>"; };
+		A5E4E5061B17741800F12156 /* FPObstacleLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPObstacleLayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +187,8 @@
 				A59521B81B0B5C8000DD124D /* FPScrollingNode.m */,
 				A5E015BB1B0B75E800184787 /* FPScrollingLayer.h */,
 				A5E015BC1B0B75E800184787 /* FPScrollingLayer.m */,
+				A5E4E5051B17741800F12156 /* FPObstacleLayer.h */,
+				A5E4E5061B17741800F12156 /* FPObstacleLayer.m */,
 			);
 			name = Layers;
 			sourceTree = "<group>";
@@ -299,6 +304,7 @@
 				A52A8FF41AF259A50036FD81 /* FPPlane.m in Sources */,
 				A5E27A311AF1391500225A19 /* main.m in Sources */,
 				A5E015BD1B0B75E800184787 /* FPScrollingLayer.m in Sources */,
+				A5E4E5071B17741800F12156 /* FPObstacleLayer.m in Sources */,
 				A59521B91B0B5C8000DD124D /* FPScrollingNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

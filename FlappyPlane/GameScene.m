@@ -31,7 +31,7 @@ static const CGFloat kMinFPS = 10.0/60.0;
     self.backgroundColor = [SKColor colorWithRed:213./255. green:237./255. blue:247./255. alpha:1.0];
     
     //Get Atlas File
-    SKTextureAtlas *graphics = [SKTextureAtlas atlasNamed:@"Graphics"];
+    SKTextureAtlas *graphics = [SKTextureAtlas atlasNamed:kFPGraphicsAtlas];
     
     // Setup physics
     self.physicsWorld.gravity = CGVectorMake(0.0, -4.5);
@@ -132,7 +132,7 @@ static const CGFloat kMinFPS = 10.0/60.0;
 
 - (SKSpriteNode *)generateGroundTile
 {
-    SKTextureAtlas *graphics = [SKTextureAtlas atlasNamed:@"Graphics"];
+    SKTextureAtlas *graphics = [SKTextureAtlas atlasNamed:kFPGraphicsAtlas];
     SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithTexture:[graphics textureNamed:@"groundGrass"]];
     sprite.anchorPoint = CGPointZero; // The FPScrollingLayer will set it, so I am setting it here to get the right path
     // Path

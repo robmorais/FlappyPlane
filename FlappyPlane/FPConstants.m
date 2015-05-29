@@ -13,4 +13,6 @@
 const uint32_t kFPCategoryPlane     = 0x1 << 0;
 const uint32_t kFPCategoryGround    = 0x1 << 1;
 
+NSString *const kFPGraphicsAtlas = @"Graphics";
+
 @end
