@@ -12,11 +12,10 @@
 @interface FPObstacleLayer()
 
 @property (nonatomic) CGFloat marker;
-
 @end
 
 static const CGFloat kFPMarkerBuffer = 200.0;
-static const CGFloat kFPVerticalGap = 90.0;
+//static const CGFloat kFPVerticalGap = 90.0;
 static const CGFloat kFPSpaceBetweenObstacleSets = 180.0;
 
 // Using texture names as the key
@@ -59,12 +58,14 @@ static NSString *const kFPKeyMountainDown = @"MountainGrassDown";
     SKSpriteNode *moutainDown = [self unusedObjectForKey:kFPKeyMountainDown];
     
     // Calculate variation
-    CGFloat maxVariation = (moutainDown.size.height + moutainUp.size.height + kFPVerticalGap) - (self.ceiling - self.floor);
+    CGFloat verticalGap = self.ceiling - moutainUp.size.height;
+    
+    CGFloat maxVariation = moutainUp.size.height;//(moutainDown.size.height + moutainUp.size.height + kFPVerticalGap) - (self.ceiling - self.floor);
     CGFloat yVariation = (CGFloat)arc4random_uniform(maxVariation);
     
     // Position moutain nodes.
     moutainUp.position = CGPointMake(self.marker, self.floor + (moutainUp.size.height * 0.5) - yVariation);
-    moutainDown.position = CGPointMake(self.marker, moutainUp.position.y + moutainDown.size.height + kFPVerticalGap);
+    moutainDown.position = CGPointMake(self.marker, moutainUp.position.y + moutainDown.size.height + verticalGap);
     
     // Reposition marker.
     self.marker += kFPSpaceBetweenObstacleSets;
