@@ -9,6 +9,7 @@
 #import "GameScene.h"
 #import "FPPlane.h"
 #import "FPScrollingLayer.h"
+#import "FPObstacleLayer.h"
 #import "FPConstants.h"
 
 @interface GameScene()
@@ -17,6 +18,7 @@
 @property (nonatomic) FPPlane *player;
 @property (nonatomic) FPScrollingLayer *background;
 @property (nonatomic) FPScrollingLayer *foreground;
+@property (nonatomic) FPObstacleLayer *obstacles;
 
 @end
 
@@ -47,16 +49,24 @@ static const CGFloat kMinFPS = 10.0/60.0;
     }
     
     _background = [[FPScrollingLayer alloc] initWithTiles:backgroundTiles];
-    _background.position = CGPointZero;
+    //_background.position = CGPointZero;
     _background.horizontalScrollSpeed = -60.0;
     _background.scrolling = YES;
     [_world addChild:_background];
+    
+    // Setup Obstacles Layer
+    _obstacles = [FPObstacleLayer new];
+    _obstacles.horizontalScrollSpeed = -80.0;
+    _obstacles.scrolling = YES;
+    _obstacles.floor = 0.0;
+    _obstacles.ceiling = self.size.height;
+    [_world addChild:_obstacles];
     
     // Setup Foreground Layer
     _foreground = [[FPScrollingLayer alloc] initWithTiles:@[[self generateGroundTile],
                                                             [self generateGroundTile],
                                                             [self generateGroundTile]]];
-    _foreground.position = CGPointZero;
+    //_foreground.position = CGPointZero;
     _foreground.horizontalScrollSpeed = -80.0;
     _foreground.scrolling = YES;
     [_world addChild:_foreground];
@@ -73,6 +83,9 @@ static const CGFloat kMinFPS = 10.0/60.0;
     // Reset Layers
     self.foreground.position = CGPointZero;
     [self.foreground layoutTiles];
+    self.obstacles.position = CGPointZero;
+    self.obstacles.scrolling = NO;
+    [self.obstacles reset];
     self.background.position = CGPointZero;
     [self.background layoutTiles];
     
@@ -91,6 +104,7 @@ static const CGFloat kMinFPS = 10.0/60.0;
         } else {
             self.player.accelerating = YES;
             self.player.physicsBody.affectedByGravity = YES;
+            self.obstacles.scrolling = YES;
         }
     }
     
@@ -123,6 +137,7 @@ static const CGFloat kMinFPS = 10.0/60.0;
     [self.player update];
     if (!self.player.crashed) {
         [self.background updateSinceTimeElapsed:timeElapsed];
+        [self.obstacles updateSinceTimeElapsed:timeElapsed];
         [self.foreground updateSinceTimeElapsed:timeElapsed];
     }
     
