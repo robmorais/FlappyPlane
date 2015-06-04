@@ -17,7 +17,8 @@
 
 @end
 
-static NSString *const kPlaneAnimationKey = @"FPPlaneAnimation";
+static NSString *const kFPPlaneAnimationKey = @"FPPlaneAnimation";
+static const CGFloat kFPMaxAltitude = 300.0;
 
 @implementation FPPlane
 
@@ -95,12 +96,12 @@ static NSString *const kPlaneAnimationKey = @"FPPlaneAnimation";
 
 - (void)setRandomColour
 {
-    [self removeActionForKey:kPlaneAnimationKey];
+    [self removeActionForKey:kFPPlaneAnimationKey];
     SKAction *animation = [self.planeAnimations objectAtIndex:arc4random_uniform((int)self.planeAnimations.count)];
-    [self runAction:animation withKey:kPlaneAnimationKey];
+    [self runAction:animation withKey:kFPPlaneAnimationKey];
     
     if (!self.engineRunning) {
-        [self actionForKey:kPlaneAnimationKey].speed = 0.0;
+        [self actionForKey:kFPPlaneAnimationKey].speed = 0.0;
     }
 }
 
@@ -114,12 +115,12 @@ static NSString *const kPlaneAnimationKey = @"FPPlaneAnimation";
     _engineRunning = engineRunning && !self.crashed;
     
     if (engineRunning) {
-        [self actionForKey:kPlaneAnimationKey].speed = 1.0;
+        [self actionForKey:kFPPlaneAnimationKey].speed = 1.0;
         self.puffTrailEmitter.particleBirthRate = self.puffTrailBirthrate;
         self.puffTrailEmitter.targetNode = self.parent;
     }
     else {
-        [self actionForKey:kPlaneAnimationKey].speed = 0.0;
+        [self actionForKey:kFPPlaneAnimationKey].speed = 0.0;
         self.puffTrailEmitter.particleBirthRate = 0.0;
     }
 }
@@ -157,7 +158,7 @@ static NSString *const kPlaneAnimationKey = @"FPPlaneAnimation";
 
 - (void)update
 {
-    if (self.accelerating) {
+    if (self.accelerating && self.position.y <= kFPMaxAltitude) {
         [self.physicsBody applyForce:CGVectorMake(0.0, 100)];
     }
     if (!self.crashed) {
