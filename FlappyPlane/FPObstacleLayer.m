@@ -16,11 +16,27 @@
 @end
 
 static const CGFloat kFPMarkerBuffer = 200.0;
+static const CGFloat kFPVerticalGap = 90.0;
+static const CGFloat kFPSpaceBetweenObstacleSets = 180.0;
 
-static NSString *const kFPMountainUpTextureName = @"MountainGrass";
-static NSString *const kFPMountainDownTextureName = @"MountainGrassDown";
+// Using texture names as the key
+static NSString *const kFPKeyMountainUp = @"MountainGrass";
+static NSString *const kFPKeyMountainDown = @"MountainGrassDown";
 
 @implementation FPObstacleLayer
+
+- (void)reset
+{
+    // Loop through nodes and reposition for reuse
+    for (SKSpriteNode *sprite in self.children) {
+        sprite.position = CGPointMake(-1000, 0);
+    }
+    
+    // Reposition marker
+    if (self.scene) {
+        self.marker = self.scene.size.width + kFPMarkerBuffer;
+    }
+}
 
 - (void)updateSinceTimeElapsed:(NSTimeInterval)timeElapsed
 {
@@ -39,16 +55,46 @@ static NSString *const kFPMountainDownTextureName = @"MountainGrassDown";
 
 - (void)addObstacleSet
 {
+    SKSpriteNode *moutainUp = [self unusedObjectForKey:kFPKeyMountainUp];
+    SKSpriteNode *moutainDown = [self unusedObjectForKey:kFPKeyMountainDown];
     
+    // Calculate variation
+    CGFloat maxVariation = (moutainDown.size.height + moutainUp.size.height + kFPVerticalGap) - (self.ceiling - self.floor);
+    CGFloat yVariation = (CGFloat)arc4random_uniform(maxVariation);
+    
+    // Position moutain nodes.
+    moutainUp.position = CGPointMake(self.marker, self.floor + (moutainUp.size.height * 0.5) - yVariation);
+    moutainDown.position = CGPointMake(self.marker, moutainUp.position.y + moutainDown.size.height + kFPVerticalGap);
+    
+    // Reposition marker.
+    self.marker += kFPSpaceBetweenObstacleSets;
 }
 
-- (SKSpriteNode*)createObstacleForKey:(NSString *)key
+- (SKSpriteNode *)unusedObjectForKey:(NSString *)key
+{
+    if (self.scene) {
+        // Get left edge of screen in local coordinates.
+        CGFloat leftEdge = [self.scene convertPoint:CGPointMake(-self.scene.size.width * self.scene.anchorPoint.x, 0) toNode:self].x;
+        
+        // Try to find object for key to the left of the screen
+        for (SKSpriteNode *sprite in self.children) {
+            if (sprite.name == key && sprite.frame.origin.x + sprite.size.width < leftEdge) {
+                return sprite;
+            }
+        }
+    }
+    
+    // Couldn't find an unused object, so create a new one
+    return [self createObstacleForKey:key];
+}
+
+- (SKSpriteNode *)createObstacleForKey:(NSString *)key
 {
     SKTextureAtlas *atlas = [SKTextureAtlas atlasNamed:kFPGraphicsAtlas];
     SKSpriteNode *sprite = nil;
     
-    if (key == kFPMountainUpTextureName ) {
-        sprite = [SKSpriteNode spriteNodeWithTexture:[atlas textureNamed:kFPMountainUpTextureName]];
+    if (key == kFPKeyMountainUp ) {
+        sprite = [SKSpriteNode spriteNodeWithTexture:[atlas textureNamed:kFPKeyMountainUp]];
         
         CGFloat offsetX = sprite.frame.size.width * sprite.anchorPoint.x;
         CGFloat offsetY = sprite.frame.size.height * sprite.anchorPoint.y;
@@ -66,8 +112,8 @@ static NSString *const kFPMountainDownTextureName = @"MountainGrassDown";
         
         [self addChild:sprite];
     }
-    else if (key == kFPMountainDownTextureName) {
-        sprite = [SKSpriteNode spriteNodeWithTexture:[atlas textureNamed:kFPMountainDownTextureName]];
+    else if (key == kFPKeyMountainDown) {
+        sprite = [SKSpriteNode spriteNodeWithTexture:[atlas textureNamed:kFPKeyMountainDown]];
         
         CGFloat offsetX = sprite.frame.size.width * sprite.anchorPoint.x;
         CGFloat offsetY = sprite.frame.size.height * sprite.anchorPoint.y;
