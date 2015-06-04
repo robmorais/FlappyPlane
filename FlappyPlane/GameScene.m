@@ -49,7 +49,6 @@ static const CGFloat kMinFPS = 10.0/60.0;
     }
     
     _background = [[FPScrollingLayer alloc] initWithTiles:backgroundTiles];
-    //_background.position = CGPointZero;
     _background.horizontalScrollSpeed = -60.0;
     _background.scrolling = YES;
     [_world addChild:_background];
@@ -66,7 +65,6 @@ static const CGFloat kMinFPS = 10.0/60.0;
     _foreground = [[FPScrollingLayer alloc] initWithTiles:@[[self generateGroundTile],
                                                             [self generateGroundTile],
                                                             [self generateGroundTile]]];
-    //_foreground.position = CGPointZero;
     _foreground.horizontalScrollSpeed = -80.0;
     _foreground.scrolling = YES;
     [_world addChild:_foreground];
