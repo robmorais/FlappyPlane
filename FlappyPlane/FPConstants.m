@@ -10,8 +10,9 @@
 
 @implementation FPConstants
 
-const uint32_t kFPCategoryPlane     = 0x1 << 0;
-const uint32_t kFPCategoryGround    = 0x1 << 1;
+const uint32_t kFPCategoryPlane         = 0x1 << 0;
+const uint32_t kFPCategoryGround        = 0x1 << 1;
+const uint32_t kFPCategoryCollectable   = 0x1 << 2;;
 
 NSString *const kFPGraphicsAtlas = @"Graphics";
 

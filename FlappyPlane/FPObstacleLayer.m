@@ -15,12 +15,15 @@
 @end
 
 static const CGFloat kFPMarkerBuffer = 200.0;
-//static const CGFloat kFPVerticalGap = 90.0;
+static const CGFloat kFPVerticalGap = 90.0;
 static const CGFloat kFPSpaceBetweenObstacleSets = 180.0;
+static const int kFPCollectableVerticalRange = 200;
+static const CGFloat kFPCollectableClearance = 50.0;
 
 // Using texture names as the key
 static NSString *const kFPKeyMountainUp = @"MountainGrass";
 static NSString *const kFPKeyMountainDown = @"MountainGrassDown";
+static NSString *const kFPKeyCollectableStar = @"starGold";
 
 @implementation FPObstacleLayer
 
@@ -58,14 +61,24 @@ static NSString *const kFPKeyMountainDown = @"MountainGrassDown";
     SKSpriteNode *moutainDown = [self unusedObjectForKey:kFPKeyMountainDown];
     
     // Calculate variation
-    CGFloat verticalGap = self.ceiling - moutainUp.size.height;
-    
-    CGFloat maxVariation = moutainUp.size.height;//(moutainDown.size.height + moutainUp.size.height + kFPVerticalGap) - (self.ceiling - self.floor);
+    CGFloat maxVariation = (moutainDown.size.height + moutainUp.size.height + kFPVerticalGap) - (self.ceiling - self.floor);
     CGFloat yVariation = (CGFloat)arc4random_uniform(maxVariation);
     
     // Position moutain nodes.
     moutainUp.position = CGPointMake(self.marker, self.floor + (moutainUp.size.height * 0.5) - yVariation);
-    moutainDown.position = CGPointMake(self.marker, moutainUp.position.y + moutainDown.size.height + verticalGap);
+    moutainDown.position = CGPointMake(self.marker, moutainUp.position.y + moutainDown.size.height + kFPVerticalGap);
+    
+    // Get collectable star node.
+    SKSpriteNode *star = [self unusedObjectForKey:kFPKeyCollectableStar];
+    
+    // Position star.
+    CGFloat midPoint = moutainDown.position.y + (moutainDown.size.height * 0.5) + (kFPVerticalGap * 0.5);
+    CGFloat yPosition = midPoint + arc4random_uniform(kFPCollectableVerticalRange) - (kFPCollectableVerticalRange * 0.5);
+    
+    yPosition = fminf(yPosition, self.ceiling - kFPCollectableClearance);
+    yPosition = fmaxf(yPosition, self.floor + kFPCollectableClearance);
+    
+    star.position = CGPointMake(self.marker + (kFPSpaceBetweenObstacleSets * 0.5), yPosition);
     
     // Reposition marker.
     self.marker += kFPSpaceBetweenObstacleSets;
@@ -86,10 +99,10 @@ static NSString *const kFPKeyMountainDown = @"MountainGrassDown";
     }
     
     // Couldn't find an unused object, so create a new one
-    return [self createObstacleForKey:key];
+    return [self createObjectForKey:key];
 }
 
-- (SKSpriteNode *)createObstacleForKey:(NSString *)key
+- (SKSpriteNode *)createObjectForKey:(NSString *)key
 {
     SKTextureAtlas *atlas = [SKTextureAtlas atlasNamed:kFPGraphicsAtlas];
     SKSpriteNode *sprite = nil;
@@ -129,6 +142,15 @@ static NSString *const kFPKeyMountainDown = @"MountainGrassDown";
         
         sprite.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromPath:path];
         sprite.physicsBody.categoryBitMask = kFPCategoryGround;
+        
+        [self addChild:sprite];
+    }
+    else if (key == kFPKeyCollectableStar) {
+        sprite = [SKSpriteNode spriteNodeWithTexture:[atlas textureNamed:kFPKeyCollectableStar]];
+        
+        sprite.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:0.3];
+        sprite.physicsBody.categoryBitMask = kFPCategoryCollectable;
+        sprite.physicsBody.dynamic = NO;
         
         [self addChild:sprite];
     }

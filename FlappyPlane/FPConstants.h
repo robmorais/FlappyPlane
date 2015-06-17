@@ -12,6 +12,7 @@
 
 extern const uint32_t kFPCategoryPlane;
 extern const uint32_t kFPCategoryGround;
+extern const uint32_t kFPCategoryCollectable;
 
 extern NSString *const kFPGraphicsAtlas;
 
