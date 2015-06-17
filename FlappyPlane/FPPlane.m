@@ -48,7 +48,8 @@ static const CGFloat kFPMaxAltitude = 300.0;
         self.physicsBody = [SKPhysicsBody bodyWithPolygonFromPath:path];
         self.physicsBody.mass = 0.08;
         self.physicsBody.categoryBitMask = kFPCategoryPlane;
-        self.physicsBody.contactTestBitMask = kFPCategoryGround;
+        self.physicsBody.contactTestBitMask = kFPCategoryGround | kFPCategoryCollectable;
+        self.physicsBody.collisionBitMask = kFPCategoryGround;
         
         // Fill Animations Array
         NSString *animationPlistPath = [[NSBundle mainBundle] pathForResource:@"PlaneAnimations" ofType:@"plist"];
@@ -152,6 +153,9 @@ static const CGFloat kFPMaxAltitude = 300.0;
         if (body.categoryBitMask == kFPCategoryGround) {
             // Hit the ground
             self.crashed = YES;
+        }
+        if (body.categoryBitMask == kFPCategoryCollectable) {
+            [body.node runAction:[SKAction removeFromParent]];
         }
     }
 }
