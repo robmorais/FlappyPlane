@@ -8,6 +8,7 @@
 
 #import "FPPlane.h"
 #import "FPConstants.h"
+#import "FPCollectable.h"
 
 @interface FPPlane()
 
@@ -155,7 +156,9 @@ static const CGFloat kFPMaxAltitude = 300.0;
             self.crashed = YES;
         }
         if (body.categoryBitMask == kFPCategoryCollectable) {
-            [body.node runAction:[SKAction removeFromParent]];
+            if ([body.node respondsToSelector:@selector(collect)]) {
+                [body.node performSelector:@selector(collect)];
+            }
         }
     }
 }

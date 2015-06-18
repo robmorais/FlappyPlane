@@ -55,6 +55,7 @@ static const CGFloat kMinFPS = 10.0/60.0;
     
     // Setup Obstacles Layer
     _obstacles = [FPObstacleLayer new];
+    _obstacles.collectableDelegate = self;
     _obstacles.horizontalScrollSpeed = -80.0;
     _obstacles.scrolling = YES;
     _obstacles.floor = 0.0;
@@ -139,6 +140,13 @@ static const CGFloat kMinFPS = 10.0/60.0;
         [self.foreground updateSinceTimeElapsed:timeElapsed];
     }
     
+}
+
+#pragma mark Collectable Delegate
+
+- (void)wasCollected:(FPCollectable *)collectable
+{
+    NSLog(@"Collected item worth %ld points", (long)collectable.pointValue);
 }
 
 #pragma mark Helper Methods

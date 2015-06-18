@@ -7,7 +7,8 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "FPCollectable.h"
 
-@interface GameScene : SKScene <SKPhysicsContactDelegate>
+@interface GameScene : SKScene <SKPhysicsContactDelegate, FPCollectableDelegate>
 
 @end
