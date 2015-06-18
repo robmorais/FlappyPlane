@@ -146,7 +146,10 @@ static NSString *const kFPKeyCollectableStar = @"starGold";
         [self addChild:sprite];
     }
     else if (key == kFPKeyCollectableStar) {
-        sprite = [SKSpriteNode spriteNodeWithTexture:[atlas textureNamed:kFPKeyCollectableStar]];
+        sprite = [FPCollectable spriteNodeWithTexture:[atlas textureNamed:kFPKeyCollectableStar]];
+        
+        ((FPCollectable *)sprite).pointValue = 1;
+        ((FPCollectable *)sprite).delegate = self.collectableDelegate;
         
         sprite.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:0.3];
         sprite.physicsBody.categoryBitMask = kFPCategoryCollectable;

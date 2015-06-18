@@ -7,11 +7,13 @@
 //
 
 #import "FPScrollingNode.h"
+#import "FPCollectable.h"
 
 @interface FPObstacleLayer : FPScrollingNode
 
 @property (nonatomic) CGFloat floor;
 @property (nonatomic) CGFloat ceiling;
+@property (nonatomic, weak) id<FPCollectableDelegate> collectableDelegate;
 
 - (void)reset;
 
