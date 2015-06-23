@@ -94,6 +94,12 @@
         totalSize.width -= self.letterSpacing;
     }
     
+    // Center text
+    CGPoint adjustment = CGPointMake(-totalSize.width * 0.5, -totalSize.height * 0.5);
+    
+    for (SKSpriteNode *letter in self.children) {
+        letter.position = CGPointMake(letter.position.x + adjustment.x, letter.position.y + adjustment.y);
+    }
 }
 
 @end
