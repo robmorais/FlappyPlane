@@ -72,7 +72,7 @@ static NSString *const kFPKeyCollectableStar = @"starGold";
     SKSpriteNode *star = [self unusedObjectForKey:kFPKeyCollectableStar];
     
     // Position star.
-    CGFloat midPoint = moutainDown.position.y + (moutainDown.size.height * 0.5) + (kFPVerticalGap * 0.5);
+    CGFloat midPoint = moutainUp.position.y + (moutainUp.size.height * 0.5) + (kFPVerticalGap * 0.5);
     CGFloat yPosition = midPoint + arc4random_uniform(kFPCollectableVerticalRange) - (kFPCollectableVerticalRange * 0.5);
     
     yPosition = fminf(yPosition, self.ceiling - kFPCollectableClearance);

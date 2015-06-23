@@ -11,6 +11,7 @@
 #import "FPScrollingLayer.h"
 #import "FPObstacleLayer.h"
 #import "FPConstants.h"
+#import "FPBitmapFontLabel.h"
 
 @interface GameScene()
 
@@ -19,6 +20,8 @@
 @property (nonatomic) FPScrollingLayer *background;
 @property (nonatomic) FPScrollingLayer *foreground;
 @property (nonatomic) FPObstacleLayer *obstacles;
+@property (nonatomic) FPBitmapFontLabel *scoreLabel;
+@property (nonatomic) NSInteger score;
 
 @end
 
@@ -74,6 +77,11 @@ static const CGFloat kMinFPS = 10.0/60.0;
     self.player = [FPPlane new];
     [self.world addChild:self.player];
     
+    // Setup Score Label
+    _scoreLabel = [[FPBitmapFontLabel alloc] initWithText:@"0" andFontName:@"number"];
+    _scoreLabel.position = CGPointMake(self.size.width * 0.5, self.size.height - 60);
+    [self addChild:_scoreLabel];
+    
     [self newGame];
 }
 
@@ -88,8 +96,11 @@ static const CGFloat kMinFPS = 10.0/60.0;
     self.background.position = CGPointZero;
     [self.background layoutTiles];
     
+    // Reset Score
+    self.score = 0;
+    
     // Reset Player
-    self.player.position = CGPointMake(self.size.width * 0.5, self.size.height * 0.5);
+    self.player.position = CGPointMake(self.size.width * 0.3, self.size.height * 0.5);
     self.player.physicsBody.affectedByGravity = NO;
     [self.player reset];
 }
@@ -142,11 +153,17 @@ static const CGFloat kMinFPS = 10.0/60.0;
     
 }
 
+- (void)setScore:(NSInteger)score
+{
+    _score = score;
+    self.scoreLabel.text = [NSString stringWithFormat:@"%ld", (long)score];
+}
+
 #pragma mark Collectable Delegate
 
 - (void)wasCollected:(FPCollectable *)collectable
 {
-    NSLog(@"Collected item worth %ld points", (long)collectable.pointValue);
+    self.score += collectable.pointValue * 11;
 }
 
 #pragma mark Helper Methods
