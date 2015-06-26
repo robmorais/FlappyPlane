@@ -12,6 +12,6 @@
 
 @interface FPTilesetTextureProvider : NSObject
 
-+(instancetype)sharedProvider;
-
++ (instancetype)sharedProvider;
+- (void)randomizeTileset;
 @end
