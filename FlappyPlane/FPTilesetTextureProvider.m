@@ -23,8 +23,8 @@
     static FPTilesetTextureProvider *provider = nil;
     
     @synchronized(self){
-        if (provider) {
-            provider = [FPTilesetTextureProvider new];
+        if (!provider) {
+            provider = [[FPTilesetTextureProvider alloc] init];
         }
         
         return provider;

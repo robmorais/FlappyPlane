@@ -8,6 +8,7 @@
 
 #import "FPObstacleLayer.h"
 #import "FPConstants.h"
+#import "FPTilesetTextureProvider.h"
 
 @interface FPObstacleLayer()
 
@@ -21,8 +22,8 @@ static const int kFPCollectableVerticalRange = 200;
 static const CGFloat kFPCollectableClearance = 50.0;
 
 // Using texture names as the key
-static NSString *const kFPKeyMountainUp = @"MountainGrass";
-static NSString *const kFPKeyMountainDown = @"MountainGrassDown";
+static NSString *const kFPKeyMountainUp = @"mountainUp";
+static NSString *const kFPKeyMountainDown = @"mountainDown";
 static NSString *const kFPKeyCollectableStar = @"starGold";
 
 @implementation FPObstacleLayer
@@ -32,6 +33,9 @@ static NSString *const kFPKeyCollectableStar = @"starGold";
     // Loop through nodes and reposition for reuse
     for (SKSpriteNode *sprite in self.children) {
         sprite.position = CGPointMake(-1000, 0);
+        if (sprite.name != kFPKeyCollectableStar) {
+            sprite.texture = [[FPTilesetTextureProvider sharedProvider] textureForKey:sprite.name];
+        }
     }
     
     // Reposition marker
@@ -108,7 +112,7 @@ static NSString *const kFPKeyCollectableStar = @"starGold";
     SKSpriteNode *sprite = nil;
     
     if (key == kFPKeyMountainUp ) {
-        sprite = [SKSpriteNode spriteNodeWithTexture:[atlas textureNamed:kFPKeyMountainUp]];
+        sprite = [SKSpriteNode spriteNodeWithTexture:[[FPTilesetTextureProvider sharedProvider] textureForKey:kFPKeyMountainUp]];
         
         CGFloat offsetX = sprite.frame.size.width * sprite.anchorPoint.x;
         CGFloat offsetY = sprite.frame.size.height * sprite.anchorPoint.y;
@@ -127,7 +131,7 @@ static NSString *const kFPKeyCollectableStar = @"starGold";
         [self addChild:sprite];
     }
     else if (key == kFPKeyMountainDown) {
-        sprite = [SKSpriteNode spriteNodeWithTexture:[atlas textureNamed:kFPKeyMountainDown]];
+        sprite = [SKSpriteNode spriteNodeWithTexture:[[FPTilesetTextureProvider sharedProvider] textureForKey:kFPKeyMountainDown]];
         
         CGFloat offsetX = sprite.frame.size.width * sprite.anchorPoint.x;
         CGFloat offsetY = sprite.frame.size.height * sprite.anchorPoint.y;

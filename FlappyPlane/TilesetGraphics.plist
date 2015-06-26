@@ -6,37 +6,37 @@
 	<dict>
 		<key>ground</key>
 		<string>groundDirt</string>
-		<key>moutainUp</key>
-		<string>MoutainDirt</string>
-		<key>moutainDown</key>
-		<string>MoutainDirtDown</string>
+		<key>mountainUp</key>
+		<string>MountainDirt</string>
+		<key>mountainDown</key>
+		<string>MountainDirtDown</string>
 	</dict>
     <key>Grass</key>
     <dict>
         <key>ground</key>
         <string>groundGrass</string>
-        <key>moutainUp</key>
-        <string>MoutainGrass</string>
-        <key>moutainDown</key>
-        <string>MoutainGrassDown</string>
+        <key>mountainUp</key>
+        <string>MountainGrass</string>
+        <key>mountainDown</key>
+        <string>MountainGrassDown</string>
     </dict>
     <key>Ice</key>
     <dict>
         <key>ground</key>
         <string>groundIce</string>
-        <key>moutainUp</key>
-        <string>MoutainIce</string>
-        <key>moutainDown</key>
-        <string>MoutainIceDown</string>
+        <key>mountainUp</key>
+        <string>MountainIce</string>
+        <key>mountainDown</key>
+        <string>MountainIceDown</string>
     </dict>
     <key>Snow</key>
     <dict>
         <key>ground</key>
         <string>groundSnow</string>
-        <key>moutainUp</key>
-        <string>MoutainSnow</string>
-        <key>moutainDown</key>
-        <string>MoutainSnowDown</string>
+        <key>mountainUp</key>
+        <string>MountainSnow</string>
+        <key>mountainDown</key>
+        <string>MountainSnowDown</string>
     </dict>
 </dict>
 </plist>

@@ -12,6 +12,7 @@
 #import "FPObstacleLayer.h"
 #import "FPConstants.h"
 #import "FPBitmapFontLabel.h"
+#import "FPTilesetTextureProvider.h"
 
 @interface GameScene()
 
@@ -87,6 +88,9 @@ static const CGFloat kMinFPS = 10.0/60.0;
 
 -(void)newGame
 {
+    // Randomize tileset
+    [[FPTilesetTextureProvider sharedProvider] randomizeTileset];
+    
     // Reset Layers
     self.foreground.position = CGPointZero;
     [self.foreground layoutTiles];
