@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A5000A3B1B3D4306008EE5A6 /* TilesetGraphics.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5000A3A1B3D4306008EE5A6 /* TilesetGraphics.plist */; };
+		A5000A3F1B3D44A4008EE5A6 /* FPTilesetTextureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = A5000A3E1B3D44A4008EE5A6 /* FPTilesetTextureProvider.m */; };
 		A52A8FF41AF259A50036FD81 /* FPPlane.m in Sources */ = {isa = PBXBuildFile; fileRef = A52A8FF31AF259A50036FD81 /* FPPlane.m */; };
 		A56AE9801AF14BA300063434 /* Graphics.atlas in Resources */ = {isa = PBXBuildFile; fileRef = A56AE97F1AF14BA300063434 /* Graphics.atlas */; };
 		A5703FB01AF2912700B2632C /* PlaneAnimations.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5703FAF1AF2912700B2632C /* PlaneAnimations.plist */; };
@@ -41,6 +42,8 @@
 
 /* Begin PBXFileReference section */
 		A5000A3A1B3D4306008EE5A6 /* TilesetGraphics.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TilesetGraphics.plist; sourceTree = "<group>"; };
+		A5000A3D1B3D44A4008EE5A6 /* FPTilesetTextureProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPTilesetTextureProvider.h; sourceTree = "<group>"; };
+		A5000A3E1B3D44A4008EE5A6 /* FPTilesetTextureProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPTilesetTextureProvider.m; sourceTree = "<group>"; };
 		A52A8FF21AF259A50036FD81 /* FPPlane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPPlane.h; sourceTree = "<group>"; };
 		A52A8FF31AF259A50036FD81 /* FPPlane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPPlane.m; sourceTree = "<group>"; };
 		A56AE97F1AF14BA300063434 /* Graphics.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Graphics.atlas; sourceTree = "<group>"; };
@@ -94,6 +97,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A5000A3C1B3D447D008EE5A6 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A5000A3D1B3D44A4008EE5A6 /* FPTilesetTextureProvider.h */,
+				A5000A3E1B3D44A4008EE5A6 /* FPTilesetTextureProvider.m */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		A52A8FF11AF259620036FD81 /* Nodes */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +164,7 @@
 				A5D985731AF8CE0400685269 /* Particle Effects */,
 				A5E4E5041B17734000F12156 /* Layers */,
 				A52A8FF11AF259620036FD81 /* Nodes */,
+				A5000A3C1B3D447D008EE5A6 /* Helpers */,
 				A5E27A321AF1391500225A19 /* AppDelegate.h */,
 				A5E27A331AF1391500225A19 /* AppDelegate.m */,
 				A5E27A351AF1391500225A19 /* GameScene.h */,
@@ -316,6 +329,7 @@
 				A5E27A371AF1391500225A19 /* GameScene.m in Sources */,
 				A5E4E5031B13204100F12156 /* FPConstants.m in Sources */,
 				A585715D1B319D22001A67A8 /* FPCollectable.m in Sources */,
+				A5000A3F1B3D44A4008EE5A6 /* FPTilesetTextureProvider.m in Sources */,
 				A52A8FF41AF259A50036FD81 /* FPPlane.m in Sources */,
 				A5E27A311AF1391500225A19 /* main.m in Sources */,
 				A5E015BD1B0B75E800184787 /* FPScrollingLayer.m in Sources */,
