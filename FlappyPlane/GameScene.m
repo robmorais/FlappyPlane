@@ -167,7 +167,7 @@ static const CGFloat kMinFPS = 10.0/60.0;
 
 - (void)wasCollected:(FPCollectable *)collectable
 {
-    self.score += collectable.pointValue * 11;
+    self.score += collectable.pointValue;
 }
 
 #pragma mark Helper Methods
