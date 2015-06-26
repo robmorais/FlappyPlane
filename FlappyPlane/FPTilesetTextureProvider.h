@@ -14,4 +14,5 @@
 
 + (instancetype)sharedProvider;
 - (void)randomizeTileset;
+- (SKTexture *)textureForKey:(NSString *)key;
 @end

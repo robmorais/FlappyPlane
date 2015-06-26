@@ -49,6 +49,11 @@
     self.currentTileset = [self.tilesets objectForKey:key];
 }
 
+- (SKTexture *)textureForKey:(NSString *)key
+{
+    return [self.currentTileset objectForKey:key];
+}
+
 - (void)loadTilesets
 {
     self.tilesets = [NSMutableDictionary new];
