@@ -93,6 +93,9 @@ static const CGFloat kMinFPS = 10.0/60.0;
     
     // Reset Layers
     self.foreground.position = CGPointZero;
+    for (SKSpriteNode *node in self.foreground.children) {
+        node.texture = [[FPTilesetTextureProvider sharedProvider] textureForKey:@"ground"];
+    }
     [self.foreground layoutTiles];
     self.obstacles.position = CGPointZero;
     self.obstacles.scrolling = NO;
