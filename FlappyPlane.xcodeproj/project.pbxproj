@@ -12,6 +12,7 @@
 		A52A8FF41AF259A50036FD81 /* FPPlane.m in Sources */ = {isa = PBXBuildFile; fileRef = A52A8FF31AF259A50036FD81 /* FPPlane.m */; };
 		A56AE9801AF14BA300063434 /* Graphics.atlas in Resources */ = {isa = PBXBuildFile; fileRef = A56AE97F1AF14BA300063434 /* Graphics.atlas */; };
 		A5703FB01AF2912700B2632C /* PlaneAnimations.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5703FAF1AF2912700B2632C /* PlaneAnimations.plist */; };
+		A5714B081B4680DD00218BFD /* FPButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A5714B071B4680DD00218BFD /* FPButton.m */; };
 		A585715D1B319D22001A67A8 /* FPCollectable.m in Sources */ = {isa = PBXBuildFile; fileRef = A585715C1B319D22001A67A8 /* FPCollectable.m */; };
 		A58571601B347297001A67A8 /* FPBitmapFontLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A585715F1B347297001A67A8 /* FPBitmapFontLabel.m */; };
 		A59521B91B0B5C8000DD124D /* FPScrollingNode.m in Sources */ = {isa = PBXBuildFile; fileRef = A59521B81B0B5C8000DD124D /* FPScrollingNode.m */; };
@@ -48,6 +49,8 @@
 		A52A8FF31AF259A50036FD81 /* FPPlane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPPlane.m; sourceTree = "<group>"; };
 		A56AE97F1AF14BA300063434 /* Graphics.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Graphics.atlas; sourceTree = "<group>"; };
 		A5703FAF1AF2912700B2632C /* PlaneAnimations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PlaneAnimations.plist; sourceTree = "<group>"; };
+		A5714B061B4680DD00218BFD /* FPButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPButton.h; sourceTree = "<group>"; };
+		A5714B071B4680DD00218BFD /* FPButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPButton.m; sourceTree = "<group>"; };
 		A585715B1B319D22001A67A8 /* FPCollectable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPCollectable.h; sourceTree = "<group>"; };
 		A585715C1B319D22001A67A8 /* FPCollectable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPCollectable.m; sourceTree = "<group>"; };
 		A585715E1B347297001A67A8 /* FPBitmapFontLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPBitmapFontLabel.h; sourceTree = "<group>"; };
@@ -115,6 +118,8 @@
 				A585715C1B319D22001A67A8 /* FPCollectable.m */,
 				A585715E1B347297001A67A8 /* FPBitmapFontLabel.h */,
 				A585715F1B347297001A67A8 /* FPBitmapFontLabel.m */,
+				A5714B061B4680DD00218BFD /* FPButton.h */,
+				A5714B071B4680DD00218BFD /* FPButton.m */,
 			);
 			name = Nodes;
 			sourceTree = "<group>";
@@ -335,6 +340,7 @@
 				A5E015BD1B0B75E800184787 /* FPScrollingLayer.m in Sources */,
 				A58571601B347297001A67A8 /* FPBitmapFontLabel.m in Sources */,
 				A5E4E5071B17741800F12156 /* FPObstacleLayer.m in Sources */,
+				A5714B081B4680DD00218BFD /* FPButton.m in Sources */,
 				A59521B91B0B5C8000DD124D /* FPScrollingNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
