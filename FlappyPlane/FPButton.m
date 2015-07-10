@@ -7,6 +7,7 @@
 //
 
 #import "FPButton.h"
+#import <objc/message.h>
 
 @interface FPButton()
 
@@ -34,6 +35,12 @@
     return instance;
 }
 
+- (void)setPressedTarget:(id)pressedTarget withAction:(SEL)pressedAction
+{
+    _pressedTarget = pressedTarget;
+    _pressedAction = pressedAction;
+}
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     self.fullSizeFrame = self.frame;
@@ -57,6 +64,8 @@
     for (UITouch *touch in touches) {
         if (CGRectContainsPoint(self.fullSizeFrame, [touch locationInNode:self.parent])) {
             // Pressed button
+            
+            objc_msgSend(self.pressedTarget,self.pressedAction);
         }
     }
 }
