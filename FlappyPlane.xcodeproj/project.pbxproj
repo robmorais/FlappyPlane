@@ -10,6 +10,7 @@
 		A5000A3B1B3D4306008EE5A6 /* TilesetGraphics.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5000A3A1B3D4306008EE5A6 /* TilesetGraphics.plist */; };
 		A5000A3F1B3D44A4008EE5A6 /* FPTilesetTextureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = A5000A3E1B3D44A4008EE5A6 /* FPTilesetTextureProvider.m */; };
 		A52A8FF41AF259A50036FD81 /* FPPlane.m in Sources */ = {isa = PBXBuildFile; fileRef = A52A8FF31AF259A50036FD81 /* FPPlane.m */; };
+		A55BCE0A1B4FC83600455BD0 /* FPGameOverMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = A55BCE091B4FC83600455BD0 /* FPGameOverMenu.m */; };
 		A56AE9801AF14BA300063434 /* Graphics.atlas in Resources */ = {isa = PBXBuildFile; fileRef = A56AE97F1AF14BA300063434 /* Graphics.atlas */; };
 		A5703FB01AF2912700B2632C /* PlaneAnimations.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5703FAF1AF2912700B2632C /* PlaneAnimations.plist */; };
 		A5714B081B4680DD00218BFD /* FPButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A5714B071B4680DD00218BFD /* FPButton.m */; };
@@ -47,6 +48,8 @@
 		A5000A3E1B3D44A4008EE5A6 /* FPTilesetTextureProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPTilesetTextureProvider.m; sourceTree = "<group>"; };
 		A52A8FF21AF259A50036FD81 /* FPPlane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPPlane.h; sourceTree = "<group>"; };
 		A52A8FF31AF259A50036FD81 /* FPPlane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPPlane.m; sourceTree = "<group>"; };
+		A55BCE081B4FC83600455BD0 /* FPGameOverMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPGameOverMenu.h; sourceTree = "<group>"; };
+		A55BCE091B4FC83600455BD0 /* FPGameOverMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPGameOverMenu.m; sourceTree = "<group>"; };
 		A56AE97F1AF14BA300063434 /* Graphics.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Graphics.atlas; sourceTree = "<group>"; };
 		A5703FAF1AF2912700B2632C /* PlaneAnimations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PlaneAnimations.plist; sourceTree = "<group>"; };
 		A5714B061B4680DD00218BFD /* FPButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPButton.h; sourceTree = "<group>"; };
@@ -120,6 +123,8 @@
 				A585715F1B347297001A67A8 /* FPBitmapFontLabel.m */,
 				A5714B061B4680DD00218BFD /* FPButton.h */,
 				A5714B071B4680DD00218BFD /* FPButton.m */,
+				A55BCE081B4FC83600455BD0 /* FPGameOverMenu.h */,
+				A55BCE091B4FC83600455BD0 /* FPGameOverMenu.m */,
 			);
 			name = Nodes;
 			sourceTree = "<group>";
@@ -335,6 +340,7 @@
 				A5E4E5031B13204100F12156 /* FPConstants.m in Sources */,
 				A585715D1B319D22001A67A8 /* FPCollectable.m in Sources */,
 				A5000A3F1B3D44A4008EE5A6 /* FPTilesetTextureProvider.m in Sources */,
+				A55BCE0A1B4FC83600455BD0 /* FPGameOverMenu.m in Sources */,
 				A52A8FF41AF259A50036FD81 /* FPPlane.m in Sources */,
 				A5E27A311AF1391500225A19 /* main.m in Sources */,
 				A5E015BD1B0B75E800184787 /* FPScrollingLayer.m in Sources */,
