@@ -9,6 +9,7 @@
 #import "FPGameOverMenu.h"
 #import "FPConstants.h"
 #import "FPBitmapFontLabel.h"
+#import "FPButton.h"
 
 @interface FPGameOverMenu()
 @property (nonatomic) SKSpriteNode *medalDisplay;
@@ -26,7 +27,12 @@
         // Get texture atlas
         SKTextureAtlas *atlas = [SKTextureAtlas atlasNamed:kFPGraphicsAtlas];
         
-        // Create an overravel node to put all other nodes
+        // Setup game over title
+        SKSpriteNode *gameOverTitle = [SKSpriteNode spriteNodeWithTexture:[atlas textureNamed:@"textGameOver"]];
+        gameOverTitle.position = CGPointMake(size.width * 0.5, size.height - 70);
+        [self addChild:gameOverTitle];
+        
+        // Create a node to put all other nodes
         SKNode *panelGroup = [SKNode node];
         [self addChild:panelGroup];
         
@@ -80,14 +86,25 @@
         _medalDisplay.position = CGPointMake(CGRectGetMidX(medalTitle.frame), CGRectGetMinY(medalTitle.frame) - 15);
         [panelGroup addChild:_medalDisplay];
         
+        // Setup play button
+        FPButton *playButton = [FPButton spriteNodeWithTexture:[atlas textureNamed:@"buttonPlay"]];
+        playButton.position = CGPointMake(CGRectGetMidX(panelBG.frame), CGRectGetMinY(panelBG.frame) - 25);
+        [playButton setPressedTarget:self withAction:@selector(pressedPlayButton)];
+        [self addChild:playButton];
+        
         // Set initial values
         self.medal = MedalNone;
-        self.score = 78;
-        self.bestScore = 340;
+        self.score = 0;
+        self.bestScore = 0;
         
     }
     
     return self;
+}
+
+- (void)pressedPlayButton
+{
+    self.score +=1;
 }
 
 - (void)setScore:(NSInteger)score
