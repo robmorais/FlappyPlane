@@ -15,6 +15,9 @@
 @property (nonatomic) SKSpriteNode *medalDisplay;
 @property (nonatomic) FPBitmapFontLabel *scoreText;
 @property (nonatomic) FPBitmapFontLabel *bestScoreText;
+@property (nonatomic) SKSpriteNode *gameOverTitle;
+@property (nonatomic) SKNode *panelGroup;
+@property (nonatomic) FPButton *playButton;
 @end
 
 @implementation FPGameOverMenu
@@ -28,13 +31,13 @@
         SKTextureAtlas *atlas = [SKTextureAtlas atlasNamed:kFPGraphicsAtlas];
         
         // Setup game over title
-        SKSpriteNode *gameOverTitle = [SKSpriteNode spriteNodeWithTexture:[atlas textureNamed:@"textGameOver"]];
-        gameOverTitle.position = CGPointMake(size.width * 0.5, size.height - 70);
-        [self addChild:gameOverTitle];
+        _gameOverTitle = [SKSpriteNode spriteNodeWithTexture:[atlas textureNamed:@"textGameOver"]];
+        _gameOverTitle.position = CGPointMake(size.width * 0.5, size.height - 70);
+        [self addChild:_gameOverTitle];
         
         // Create a node to put all other nodes
-        SKNode *panelGroup = [SKNode node];
-        [self addChild:panelGroup];
+        _panelGroup = [SKNode node];
+        [self addChild:_panelGroup];
         
         // Setup panel background
         SKSpriteNode *panelBG = [SKSpriteNode spriteNodeWithTexture:[atlas textureNamed:@"UIbg"]];
@@ -46,51 +49,51 @@
         panelBG.xScale = 175./panelBG.size.width;
         panelBG.yScale = 115./panelBG.size.height;
         
-        [panelGroup addChild:panelBG];
+        [self.panelGroup addChild:panelBG];
         
         // Setup score title
         SKSpriteNode *scoreTitle = [SKSpriteNode spriteNodeWithTexture:[atlas textureNamed:@"textScore"]];
         scoreTitle.anchorPoint = CGPointMake(1.0, 1.0);
         scoreTitle.position = CGPointMake(CGRectGetMaxX(panelBG.frame) - 20, CGRectGetMaxY(panelBG.frame) - 10);
-        [panelGroup addChild:scoreTitle];
+        [self.panelGroup addChild:scoreTitle];
         
         // Setup score text label
         _scoreText = [[FPBitmapFontLabel alloc] initWithText:@"0" andFontName:@"number"];
         _scoreText.alignment = BitmapFontAlignmentRight;
         _scoreText.position = CGPointMake(CGRectGetMaxX(scoreTitle.frame),CGRectGetMinY(scoreTitle.frame) - 15);
         [_scoreText setScale:0.5];
-        [panelGroup addChild:_scoreText];
+        [self.panelGroup addChild:_scoreText];
         
         // Setup best score title
         SKSpriteNode *bestScoreTitle = [SKSpriteNode spriteNodeWithTexture:[atlas textureNamed:@"textBest"]];
         bestScoreTitle.anchorPoint = CGPointMake(1.0, 1.0);
         bestScoreTitle.position = CGPointMake(CGRectGetMaxX(panelBG.frame) - 20, CGRectGetMaxY(panelBG.frame) - 60);
-        [panelGroup addChild:bestScoreTitle];
+        [self.panelGroup addChild:bestScoreTitle];
         
         // Setup best score text label
         _bestScoreText = [[FPBitmapFontLabel alloc] initWithText:@"0" andFontName:@"number"];
         _bestScoreText.alignment = BitmapFontAlignmentRight;
         _bestScoreText.position = CGPointMake(CGRectGetMaxX(bestScoreTitle.frame),CGRectGetMinY(bestScoreTitle.frame) - 15);
         [_bestScoreText setScale:0.5];
-        [panelGroup addChild:_bestScoreText];
+        [self.panelGroup addChild:_bestScoreText];
         
         // Setup medal title
         SKSpriteNode *medalTitle = [SKSpriteNode spriteNodeWithTexture:[atlas textureNamed:@"textMedal"]];
         medalTitle.anchorPoint = CGPointMake(0.0, 1.0);
         medalTitle.position = CGPointMake(CGRectGetMinX(panelBG.frame) + 20, CGRectGetMaxY(panelBG.frame) - 10);
-        [panelGroup addChild:medalTitle];
+        [self.panelGroup addChild:medalTitle];
         
         // Setup medal display
         _medalDisplay = [SKSpriteNode spriteNodeWithTexture:[atlas textureNamed:@"medalBlank"]];
         _medalDisplay.anchorPoint = CGPointMake(0.5, 1.0);
         _medalDisplay.position = CGPointMake(CGRectGetMidX(medalTitle.frame), CGRectGetMinY(medalTitle.frame) - 15);
-        [panelGroup addChild:_medalDisplay];
+        [self.panelGroup addChild:_medalDisplay];
         
         // Setup play button
-        FPButton *playButton = [FPButton spriteNodeWithTexture:[atlas textureNamed:@"buttonPlay"]];
-        playButton.position = CGPointMake(CGRectGetMidX(panelBG.frame), CGRectGetMinY(panelBG.frame) - 25);
-        [playButton setPressedTarget:self withAction:@selector(pressedPlayButton)];
-        [self addChild:playButton];
+        _playButton = [FPButton spriteNodeWithTexture:[atlas textureNamed:@"buttonPlay"]];
+        _playButton.position = CGPointMake(CGRectGetMidX(panelBG.frame), CGRectGetMinY(panelBG.frame) - 25);
+        [_playButton setPressedTarget:self withAction:@selector(pressedPlayButton)];
+        [self addChild:_playButton];
         
         // Set initial values
         self.medal = MedalNone;
@@ -104,7 +107,7 @@
 
 - (void)pressedPlayButton
 {
-    self.score +=1;
+    [self show];
 }
 
 - (void)setScore:(NSInteger)score
@@ -140,6 +143,31 @@
             self.medalDisplay.texture = [atlas textureNamed:@"medalBlank"];
             break;
     }
+}
+
+- (void)show
+{
+    // Animate game over title
+    SKAction *dropGameOverTitle = [SKAction moveToY:self.gameOverTitle.position.y duration:0.5];
+    dropGameOverTitle.timingMode = SKActionTimingEaseOut;
+    self.gameOverTitle.position = CGPointMake(self.gameOverTitle.position.x, self.gameOverTitle.position.y+100);
+    [self.gameOverTitle runAction:dropGameOverTitle];
+    
+    // Animate panel group
+    SKAction *raisePanel = [SKAction group:@[[SKAction fadeInWithDuration:0.4],
+                                             [SKAction moveByX:0.0 y:100.0 duration:0.4]]];
+    raisePanel.timingMode = SKActionTimingEaseOut;
+    self.panelGroup.alpha = 0.0;
+    self.panelGroup.position = CGPointMake(self.panelGroup.position.x, self.panelGroup.position.y-100);
+    [self.panelGroup runAction:[SKAction sequence:@[[SKAction waitForDuration:0.6],raisePanel]]];
+    
+    // Animate play button
+    SKAction *fadeInPlayButton = [SKAction sequence:@[[SKAction waitForDuration:1.1],[SKAction fadeInWithDuration:0.4]]];
+    self.playButton.alpha = 0.0;
+    self.playButton.userInteractionEnabled = NO;
+    [self.playButton runAction:fadeInPlayButton completion:^{
+        self.playButton.userInteractionEnabled = YES;
+    }];
 }
 
 
