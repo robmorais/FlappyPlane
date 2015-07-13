@@ -9,6 +9,10 @@
 #import "FPGameOverMenu.h"
 #import "FPConstants.h"
 
+@interface FPGameOverMenu()
+@property (nonatomic) SKSpriteNode *medalDisplay;
+@end
+
 @implementation FPGameOverMenu
 
 - (instancetype)initWithSize:(CGSize)size {
@@ -53,9 +57,41 @@
         medalTitle.position = CGPointMake(CGRectGetMinX(panelBG.frame) + 20, CGRectGetMaxY(panelBG.frame) - 10);
         [panelGroup addChild:medalTitle];
         
+        // Setup medal display
+        _medalDisplay = [SKSpriteNode spriteNodeWithTexture:[atlas textureNamed:@"medalBlank"]];
+        _medalDisplay.anchorPoint = CGPointMake(0.5, 1.0);
+        _medalDisplay.position = CGPointMake(CGRectGetMidX(medalTitle.frame), CGRectGetMinY(medalTitle.frame) - 15);
+        [panelGroup addChild:_medalDisplay];
+        
+        // Set initial values
+        self.medal = MedalNone;
+        
     }
     
     return self;
+}
+
+- (void)setMedal:(MedalType)medal
+{
+    // Get texture atlas
+    SKTextureAtlas *atlas = [SKTextureAtlas atlasNamed:kFPGraphicsAtlas];
+    
+    _medal = medal;
+    
+    switch (medal) {
+        case MedalBronze:
+            self.medalDisplay.texture = [atlas textureNamed:@"medalBronze"];
+            break;
+        case MedalSilver:
+            self.medalDisplay.texture = [atlas textureNamed:@"medalSilver"];
+            break;
+        case MedalGold:
+            self.medalDisplay.texture = [atlas textureNamed:@"medalGold"];
+            break;
+        default:
+            self.medalDisplay.texture = [atlas textureNamed:@"medalBlank"];
+            break;
+    }
 }
 
 
