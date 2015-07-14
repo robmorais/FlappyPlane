@@ -20,7 +20,6 @@
 + (instancetype)spriteNodeWithTexture:(SKTexture *)texture
 {
     FPButton *instance = [super spriteNodeWithTexture:texture];
-    instance.name = @"lalala";
     instance.pressedScale = 0.9;
     instance.userInteractionEnabled = YES;
     return instance;
@@ -29,7 +28,6 @@
 + (instancetype)spriteNodeWithImageNamed:(NSString *)name
 {
     FPButton *instance = [super spriteNodeWithImageNamed:name];
-    instance.name = @"lalala";
     instance.pressedScale = 0.9;
     instance.userInteractionEnabled = YES;
     return instance;

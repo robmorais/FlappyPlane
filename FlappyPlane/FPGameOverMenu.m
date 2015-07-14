@@ -107,7 +107,7 @@
 
 - (void)pressedPlayButton
 {
-    [self show];
+    
 }
 
 - (void)setScore:(NSInteger)score
@@ -157,17 +157,18 @@
     SKAction *raisePanel = [SKAction group:@[[SKAction fadeInWithDuration:0.4],
                                              [SKAction moveByX:0.0 y:100.0 duration:0.4]]];
     raisePanel.timingMode = SKActionTimingEaseOut;
-    self.panelGroup.alpha = 0.0;
+    self.panelGroup.alpha = 0.01;
     self.panelGroup.position = CGPointMake(self.panelGroup.position.x, self.panelGroup.position.y-100);
-    [self.panelGroup runAction:[SKAction sequence:@[[SKAction waitForDuration:0.6],raisePanel]]];
+    [self.panelGroup runAction:[SKAction sequence:@[[SKAction waitForDuration:0.4],raisePanel]]];
     
     // Animate play button
-    SKAction *fadeInPlayButton = [SKAction sequence:@[[SKAction waitForDuration:1.1],[SKAction fadeInWithDuration:0.4]]];
+    SKAction *fadeInPlayButton = [SKAction sequence:@[[SKAction waitForDuration:0.8],[SKAction fadeInWithDuration:0.4]]];
     self.playButton.alpha = 0.0;
     self.playButton.userInteractionEnabled = NO;
     [self.playButton runAction:fadeInPlayButton completion:^{
         self.playButton.userInteractionEnabled = YES;
     }];
+    
 }
 
 
