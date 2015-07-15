@@ -8,7 +8,8 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import "FPCollectable.h"
+#import "FPGameOverMenu.h"
 
-@interface GameScene : SKScene <SKPhysicsContactDelegate, FPCollectableDelegate>
+@interface GameScene : SKScene <SKPhysicsContactDelegate, FPCollectableDelegate,FPGameOverMenuDelegate>
 
 @end

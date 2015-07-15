@@ -107,7 +107,7 @@
 
 - (void)pressedPlayButton
 {
-    
+    [self.delegate pressedNewGameButton];
 }
 
 - (void)setScore:(NSInteger)score

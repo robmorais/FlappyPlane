@@ -15,12 +15,19 @@ typedef enum : NSUInteger {
     MedalGold
 } MedalType;
 
+@protocol FPGameOverMenuDelegate <NSObject>
+
+- (void)pressedNewGameButton;
+
+@end
+
 @interface FPGameOverMenu : SKNode
 
 @property (nonatomic) CGSize size;
 @property (nonatomic) NSInteger score;
 @property (nonatomic) NSInteger bestScore;
 @property (nonatomic) MedalType medal;
+@property (nonatomic, weak) id<FPGameOverMenuDelegate> delegate;
 
 - (instancetype)initWithSize:(CGSize)size;
 - (void)show;
