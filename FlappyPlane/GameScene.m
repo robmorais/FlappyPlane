@@ -29,14 +29,18 @@ typedef enum : NSUInteger {
 @property (nonatomic) FPObstacleLayer *obstacles;
 @property (nonatomic) FPBitmapFontLabel *scoreLabel;
 @property (nonatomic) NSInteger score;
+@property (nonatomic) NSInteger bestScore;
 @property (nonatomic) FPGameOverMenu *gameOverMenu;
 @property (nonatomic) GameState gameState;
 
 @end
 
 static const CGFloat kMinFPS = 10.0/60.0;
+static NSString *const kFPKeyBestScore = @"FPBestScore";
 
 @implementation GameScene
+
+#pragma mark Life Cycle
 
 -(void)didMoveToView:(SKView *)view {
     //self.size = view.bounds.size; // BUG FIX option 2
@@ -86,6 +90,9 @@ static const CGFloat kMinFPS = 10.0/60.0;
     self.player = [FPPlane new];
     [self.world addChild:self.player];
     
+    // Load best score
+    self.bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:kFPKeyBestScore];
+    
     // Setup Score Label
     _scoreLabel = [[FPBitmapFontLabel alloc] initWithText:@"0" andFontName:@"number"];
     _scoreLabel.position = CGPointMake(self.size.width * 0.5, self.size.height - 60);
@@ -96,36 +103,6 @@ static const CGFloat kMinFPS = 10.0/60.0;
     _gameOverMenu.delegate = self;
     
     [self newGame];
-}
-
--(void)newGame
-{
-    // Randomize tileset
-    [[FPTilesetTextureProvider sharedProvider] randomizeTileset];
-    
-    // Reset Layers
-    self.foreground.position = CGPointZero;
-    for (SKSpriteNode *node in self.foreground.children) {
-        node.texture = [[FPTilesetTextureProvider sharedProvider] textureForKey:@"ground"];
-    }
-    [self.foreground layoutTiles];
-    self.obstacles.position = CGPointZero;
-    self.obstacles.scrolling = NO;
-    [self.obstacles reset];
-    self.background.position = CGPointZero;
-    [self.background layoutTiles];
-    
-    // Reset Score
-    self.score = 0;
-    self.scoreLabel.alpha = 1.0;
-    
-    // Reset Player
-    self.player.position = CGPointMake(self.size.width * 0.3, self.size.height * 0.5);
-    self.player.physicsBody.affectedByGravity = NO;
-    [self.player reset];
-    
-    // Set game state
-    self.gameState = GameReady;
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -174,9 +151,7 @@ static const CGFloat kMinFPS = 10.0/60.0;
         // Fade out score display
         [self.scoreLabel runAction:[SKAction fadeOutWithDuration:0.4]];
         // Show game over menu
-        [self addChild:self.gameOverMenu];
-        [self.gameOverMenu show];
-        
+        [self gameOver];
     }
     
     if (self.gameState != GameOver) {
@@ -191,6 +166,55 @@ static const CGFloat kMinFPS = 10.0/60.0;
 {
     _score = score;
     self.scoreLabel.text = [NSString stringWithFormat:@"%ld", (long)score];
+}
+
+#pragma mark private methods
+
+- (void)gameOver
+{
+    // Setup game over menu
+    self.gameOverMenu.score = self.score;
+    self.gameOverMenu.medal = [self medalForCurrentScore];
+    if (self.score > self.bestScore) {
+        self.bestScore = self.score;
+        [[NSUserDefaults standardUserDefaults] setInteger:self.bestScore forKey:kFPKeyBestScore];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    self.gameOverMenu.bestScore = self.bestScore;
+    
+    // Show game over menu
+    [self addChild:self.gameOverMenu];
+    [self.gameOverMenu show];
+}
+
+-(void)newGame
+{
+    // Randomize tileset
+    [[FPTilesetTextureProvider sharedProvider] randomizeTileset];
+    
+    // Reset Layers
+    self.foreground.position = CGPointZero;
+    for (SKSpriteNode *node in self.foreground.children) {
+        node.texture = [[FPTilesetTextureProvider sharedProvider] textureForKey:@"ground"];
+    }
+    [self.foreground layoutTiles];
+    self.obstacles.position = CGPointZero;
+    self.obstacles.scrolling = NO;
+    [self.obstacles reset];
+    self.background.position = CGPointZero;
+    [self.background layoutTiles];
+    
+    // Reset Score
+    self.score = 0;
+    self.scoreLabel.alpha = 1.0;
+    
+    // Reset Player
+    self.player.position = CGPointMake(self.size.width * 0.3, self.size.height * 0.5);
+    self.player.physicsBody.affectedByGravity = NO;
+    [self.player reset];
+    
+    // Set game state
+    self.gameState = GameReady;
 }
 
 #pragma mark FPGameOverMenuDelegate
@@ -209,6 +233,23 @@ static const CGFloat kMinFPS = 10.0/60.0;
 }
 
 #pragma mark Helper Methods
+
+- (MedalType)medalForCurrentScore
+{
+    NSInteger bestScore = 6;
+    if (self.bestScore > bestScore) {
+        bestScore = self.bestScore;
+    }
+    
+    if (self.score > bestScore) {
+        return MedalGold;
+    } else if (self.score >= (bestScore * 0.75)) {
+        return MedalSilver;
+    } else if (self.score >= (bestScore * 0.5)) {
+        return MedalBronze;
+    }
+    return MedalNone;
+}
 
 - (SKSpriteNode *)generateGroundTile
 {
