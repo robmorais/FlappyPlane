@@ -151,6 +151,7 @@ static NSString *const kFPKeyBestScore = @"FPBestScore";
         // Fade out score display
         [self.scoreLabel runAction:[SKAction fadeOutWithDuration:0.4]];
         // Show game over menu
+        [self bump];
         [self gameOver];
     }
     
@@ -245,6 +246,14 @@ static NSString *const kFPKeyBestScore = @"FPBestScore";
 }
 
 #pragma mark Helper Methods
+
+- (void)bump
+{
+    SKAction *bump = [SKAction sequence:@[[SKAction moveBy:CGVectorMake(-5,-4) duration:0.1],
+                                          [SKAction moveTo:CGPointZero duration:0.1]]];
+    
+    [self.world runAction:[SKAction sequence:@[bump,bump]]];
+}
 
 - (MedalType)medalForCurrentScore
 {
