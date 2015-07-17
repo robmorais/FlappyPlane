@@ -32,7 +32,7 @@ typedef enum : NSUInteger {
 @property (nonatomic) NSInteger bestScore;
 @property (nonatomic) FPGameOverMenu *gameOverMenu;
 @property (nonatomic) GameState gameState;
-
+@property (nonatomic) SKSpriteNode *tap;
 @end
 
 static const CGFloat kMinFPS = 10.0/60.0;
@@ -52,7 +52,7 @@ static NSString *const kFPKeyBestScore = @"FPBestScore";
     SKTextureAtlas *graphics = [SKTextureAtlas atlasNamed:kFPGraphicsAtlas];
     
     // Setup physics
-    self.physicsWorld.gravity = CGVectorMake(0.0, -4.5);
+    self.physicsWorld.gravity = CGVectorMake(0.0, -4.0);
     self.physicsWorld.contactDelegate = self;
     
     self.world = [SKNode node];
@@ -108,6 +108,7 @@ static NSString *const kFPKeyBestScore = @"FPBestScore";
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
     if (self.gameState == GameReady) {
+        [self.tap runAction:[SKAction fadeOutWithDuration:0.2]];
         self.player.physicsBody.affectedByGravity = YES;
         self.obstacles.scrolling = YES;
         self.gameState = GameRunning;
@@ -216,6 +217,32 @@ static NSString *const kFPKeyBestScore = @"FPBestScore";
     
     // Set game state
     self.gameState = GameReady;
+    
+    [self tapToStartAnimation];
+}
+
+-(void)tapToStartAnimation
+{
+    if (!self.tap) {
+        //Get Atlas File
+        SKTextureAtlas *graphics = [SKTextureAtlas atlasNamed:kFPGraphicsAtlas];
+        
+        // Set tap animation textures
+        NSArray *tapAnimationTextures = @[[graphics textureNamed:@"tap"],
+                                          [graphics textureNamed:@"tapTick"],
+                                          [graphics textureNamed:@"tapTick"]];
+        
+        // Create tap animation action
+        SKAction *tapAnimation = [SKAction animateWithTextures:tapAnimationTextures timePerFrame:0.5 resize:YES restore:NO];
+        
+        // Create animation
+        self.tap = [SKSpriteNode spriteNodeWithTexture:[graphics textureNamed:@"tap"]];
+        self.tap.position = CGPointMake(self.size.width * 0.5,self.size.height * 0.5);
+        [self.world addChild:self.tap];
+        [self.tap runAction:[SKAction repeatActionForever:tapAnimation]];
+    } else {
+        self.tap.alpha = 1.0;
+    }
 }
 
 #pragma mark FPGameOverMenuDelegate
