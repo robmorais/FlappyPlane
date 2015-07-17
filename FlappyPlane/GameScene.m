@@ -221,8 +221,20 @@ static NSString *const kFPKeyBestScore = @"FPBestScore";
 
 - (void)pressedNewGameButton
 {
-    [self newGame];
-    [self.gameOverMenu removeFromParent];
+    SKSpriteNode *blackRectangle = [SKSpriteNode spriteNodeWithColor:[UIColor blackColor] size:self.size];
+    blackRectangle.anchorPoint = CGPointZero;
+    blackRectangle.alpha = 0.0;
+    blackRectangle.zPosition = 100.0;
+    [self addChild:blackRectangle];
+    
+    SKAction *startNewGame = [SKAction runBlock:^{
+        [self newGame];
+        [self.gameOverMenu removeFromParent];
+    }];
+    
+    SKAction *fadeTransition = [SKAction sequence:@[[SKAction fadeInWithDuration:0.4],startNewGame,[SKAction fadeOutWithDuration:0.5],[SKAction removeFromParent]]];
+    
+    [blackRectangle runAction:fadeTransition];
 }
 
 #pragma mark Collectable Delegate
