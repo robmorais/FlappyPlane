@@ -9,6 +9,7 @@
 #import "GameScene.h"
 #import "FPPlane.h"
 #import "FPScrollingLayer.h"
+#import "FPWeatherLayer.h"
 #import "FPObstacleLayer.h"
 #import "FPConstants.h"
 #import "FPBitmapFontLabel.h"
@@ -26,6 +27,7 @@ typedef enum : NSUInteger {
 @property (nonatomic) FPPlane *player;
 @property (nonatomic) FPScrollingLayer *background;
 @property (nonatomic) FPScrollingLayer *foreground;
+@property (nonatomic) FPWeatherLayer *weather;
 @property (nonatomic) FPObstacleLayer *obstacles;
 @property (nonatomic) FPBitmapFontLabel *scoreLabel;
 @property (nonatomic) NSInteger score;
@@ -89,6 +91,10 @@ static NSString *const kFPKeyBestScore = @"FPBestScore";
     // Add Player
     self.player = [FPPlane new];
     [self.world addChild:self.player];
+    
+    // Setup weather layer
+    self.weather = [[FPWeatherLayer alloc] initWithSize:self.size];
+    [self.world addChild:self.weather];
     
     // Load best score
     self.bestScore = [[NSUserDefaults standardUserDefaults] integerForKey:kFPKeyBestScore];
@@ -194,6 +200,9 @@ static NSString *const kFPKeyBestScore = @"FPBestScore";
     // Randomize tileset
     [[FPTilesetTextureProvider sharedProvider] randomizeTileset];
     
+    // Set weather conditions
+    [self setupWeather];
+    
     // Reset Layers
     self.foreground.position = CGPointZero;
     for (SKSpriteNode *node in self.foreground.children) {
@@ -280,6 +289,20 @@ static NSString *const kFPKeyBestScore = @"FPBestScore";
                                           [SKAction moveTo:CGPointZero duration:0.1]]];
     
     [self.world runAction:[SKAction sequence:@[bump,bump]]];
+}
+
+- (void)setupWeather
+{
+    NSString *tilesetName = [FPTilesetTextureProvider sharedProvider].currentTilesetName;
+    self.weather.conditions = WeatherClean;
+    if ([tilesetName isEqualToString:kFPTilesetDirt] || [tilesetName isEqualToString:kFPTilesetGrass]) {
+        // 1 in 3 chance to rain
+        if (arc4random_uniform(3) == 0) self.weather.conditions = WeatherRain;
+    }
+    if ([tilesetName isEqualToString:kFPTilesetIce] || [tilesetName isEqualToString:kFPTilesetSnow]) {
+        // 1 in 2 chance to snow
+        if (arc4random_uniform(2) == 0) self.weather.conditions = WeatherSnow;
+    }
 }
 
 - (MedalType)medalForCurrentScore
