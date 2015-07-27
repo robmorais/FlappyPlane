@@ -17,6 +17,7 @@
 		A583460B1B6625A700A0172E /* SnowEffect.sks in Resources */ = {isa = PBXBuildFile; fileRef = A58346091B6625A700A0172E /* SnowEffect.sks */; };
 		A583460C1B6625A700A0172E /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = A583460A1B6625A700A0172E /* spark.png */; };
 		A583460E1B66267A00A0172E /* RainEffect.sks in Resources */ = {isa = PBXBuildFile; fileRef = A583460D1B66267A00A0172E /* RainEffect.sks */; };
+		A58346111B6627A500A0172E /* FPWeatherLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A58346101B6627A500A0172E /* FPWeatherLayer.m */; };
 		A585715D1B319D22001A67A8 /* FPCollectable.m in Sources */ = {isa = PBXBuildFile; fileRef = A585715C1B319D22001A67A8 /* FPCollectable.m */; };
 		A58571601B347297001A67A8 /* FPBitmapFontLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A585715F1B347297001A67A8 /* FPBitmapFontLabel.m */; };
 		A59521B91B0B5C8000DD124D /* FPScrollingNode.m in Sources */ = {isa = PBXBuildFile; fileRef = A59521B81B0B5C8000DD124D /* FPScrollingNode.m */; };
@@ -60,6 +61,8 @@
 		A58346091B6625A700A0172E /* SnowEffect.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SnowEffect.sks; sourceTree = "<group>"; };
 		A583460A1B6625A700A0172E /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		A583460D1B66267A00A0172E /* RainEffect.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = RainEffect.sks; sourceTree = "<group>"; };
+		A583460F1B6627A500A0172E /* FPWeatherLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPWeatherLayer.h; sourceTree = "<group>"; };
+		A58346101B6627A500A0172E /* FPWeatherLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPWeatherLayer.m; sourceTree = "<group>"; };
 		A585715B1B319D22001A67A8 /* FPCollectable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPCollectable.h; sourceTree = "<group>"; };
 		A585715C1B319D22001A67A8 /* FPCollectable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPCollectable.m; sourceTree = "<group>"; };
 		A585715E1B347297001A67A8 /* FPBitmapFontLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPBitmapFontLabel.h; sourceTree = "<group>"; };
@@ -234,6 +237,8 @@
 				A5E015BC1B0B75E800184787 /* FPScrollingLayer.m */,
 				A5E4E5051B17741800F12156 /* FPObstacleLayer.h */,
 				A5E4E5061B17741800F12156 /* FPObstacleLayer.m */,
+				A583460F1B6627A500A0172E /* FPWeatherLayer.h */,
+				A58346101B6627A500A0172E /* FPWeatherLayer.m */,
 			);
 			name = Layers;
 			sourceTree = "<group>";
@@ -352,6 +357,7 @@
 				A5E4E5031B13204100F12156 /* FPConstants.m in Sources */,
 				A585715D1B319D22001A67A8 /* FPCollectable.m in Sources */,
 				A5000A3F1B3D44A4008EE5A6 /* FPTilesetTextureProvider.m in Sources */,
+				A58346111B6627A500A0172E /* FPWeatherLayer.m in Sources */,
 				A55BCE0A1B4FC83600455BD0 /* FPGameOverMenu.m in Sources */,
 				A52A8FF41AF259A50036FD81 /* FPPlane.m in Sources */,
 				A5E27A311AF1391500225A19 /* main.m in Sources */,
