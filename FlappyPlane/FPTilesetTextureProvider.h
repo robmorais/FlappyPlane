@@ -12,6 +12,8 @@
 
 @interface FPTilesetTextureProvider : NSObject
 
+@property (nonatomic) NSString *currentTilesetName;
+
 + (instancetype)sharedProvider;
 - (void)randomizeTileset;
 - (SKTexture *)textureForKey:(NSString *)key;

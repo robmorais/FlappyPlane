@@ -16,4 +16,9 @@ extern const uint32_t kFPCategoryCollectable;
 
 extern NSString *const kFPGraphicsAtlas;
 
+extern NSString *const kFPTilesetGrass;
+extern NSString *const kFPTilesetDirt;
+extern NSString *const kFPTilesetSnow;
+extern NSString *const kFPTilesetIce;
+
 @end

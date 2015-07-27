@@ -16,4 +16,8 @@ const uint32_t kFPCategoryCollectable   = 0x1 << 2;;
 
 NSString *const kFPGraphicsAtlas = @"Graphics";
 
+NSString *const kFPTilesetGrass = @"Grass";
+NSString *const kFPTilesetDirt = @"Dirt";
+NSString *const kFPTilesetSnow = @"Snow";
+NSString *const kFPTilesetIce = @"Ice";
 @end
