@@ -16,6 +16,7 @@
 		A5714B081B4680DD00218BFD /* FPButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A5714B071B4680DD00218BFD /* FPButton.m */; };
 		A583460B1B6625A700A0172E /* SnowEffect.sks in Resources */ = {isa = PBXBuildFile; fileRef = A58346091B6625A700A0172E /* SnowEffect.sks */; };
 		A583460C1B6625A700A0172E /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = A583460A1B6625A700A0172E /* spark.png */; };
+		A583460E1B66267A00A0172E /* RainEffect.sks in Resources */ = {isa = PBXBuildFile; fileRef = A583460D1B66267A00A0172E /* RainEffect.sks */; };
 		A585715D1B319D22001A67A8 /* FPCollectable.m in Sources */ = {isa = PBXBuildFile; fileRef = A585715C1B319D22001A67A8 /* FPCollectable.m */; };
 		A58571601B347297001A67A8 /* FPBitmapFontLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A585715F1B347297001A67A8 /* FPBitmapFontLabel.m */; };
 		A59521B91B0B5C8000DD124D /* FPScrollingNode.m in Sources */ = {isa = PBXBuildFile; fileRef = A59521B81B0B5C8000DD124D /* FPScrollingNode.m */; };
@@ -58,6 +59,7 @@
 		A5714B071B4680DD00218BFD /* FPButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPButton.m; sourceTree = "<group>"; };
 		A58346091B6625A700A0172E /* SnowEffect.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SnowEffect.sks; sourceTree = "<group>"; };
 		A583460A1B6625A700A0172E /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		A583460D1B66267A00A0172E /* RainEffect.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = RainEffect.sks; sourceTree = "<group>"; };
 		A585715B1B319D22001A67A8 /* FPCollectable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPCollectable.h; sourceTree = "<group>"; };
 		A585715C1B319D22001A67A8 /* FPCollectable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPCollectable.m; sourceTree = "<group>"; };
 		A585715E1B347297001A67A8 /* FPBitmapFontLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPBitmapFontLabel.h; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				A5D985781AF8D43100685269 /* PlanePuffTrail.sks */,
 				A58346091B6625A700A0172E /* SnowEffect.sks */,
 				A583460A1B6625A700A0172E /* spark.png */,
+				A583460D1B66267A00A0172E /* RainEffect.sks */,
 			);
 			name = "Particle Effects";
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 				A5E27A441AF1391500225A19 /* LaunchScreen.xib in Resources */,
 				A5E27A411AF1391500225A19 /* Images.xcassets in Resources */,
 				A5000A3B1B3D4306008EE5A6 /* TilesetGraphics.plist in Resources */,
+				A583460E1B66267A00A0172E /* RainEffect.sks in Resources */,
 				A5703FB01AF2912700B2632C /* PlaneAnimations.plist in Resources */,
 				A583460B1B6625A700A0172E /* SnowEffect.sks in Resources */,
 				A583460C1B6625A700A0172E /* spark.png in Resources */,
