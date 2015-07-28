@@ -158,7 +158,7 @@ static NSString *const kFPKeyBestScore = @"FPBestScore";
         // Fade out score display
         [self.scoreLabel runAction:[SKAction fadeOutWithDuration:0.4]];
         // Show game over menu
-        [self bump];
+        [self crashAnimation];
         [self gameOver];
     }
     
@@ -283,8 +283,14 @@ static NSString *const kFPKeyBestScore = @"FPBestScore";
 
 #pragma mark Helper Methods
 
-- (void)bump
+- (void)crashAnimation
 {
+    // Setup action to tint the plane red and remove it later
+    SKAction *tintPlane = [SKAction colorizeWithColor:[UIColor redColor] colorBlendFactor:0.8 duration:0.0];
+    SKAction *removeTint = [SKAction colorizeWithColorBlendFactor:0.0 duration:0.2];
+    [self.player runAction:[SKAction sequence:@[tintPlane,removeTint]]];
+    
+    // Setup action to bump world
     SKAction *bump = [SKAction sequence:@[[SKAction moveBy:CGVectorMake(-5,-4) duration:0.1],
                                           [SKAction moveTo:CGPointZero duration:0.1]]];
     
