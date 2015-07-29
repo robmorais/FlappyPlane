@@ -9,6 +9,7 @@
 #import <SpriteKit/SpriteKit.h>
 
 @class FPCollectable;
+@class Sound;
 
 @protocol FPCollectableDelegate <NSObject>
 
@@ -20,6 +21,7 @@
 
 @property (nonatomic, weak) id<FPCollectableDelegate> delegate;
 @property (nonatomic) NSInteger pointValue;
+@property (nonatomic) Sound *collectionSound;
 
 - (void)collect;
 

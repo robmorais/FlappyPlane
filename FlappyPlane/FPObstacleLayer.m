@@ -9,6 +9,7 @@
 #import "FPObstacleLayer.h"
 #import "FPConstants.h"
 #import "FPTilesetTextureProvider.h"
+#import "SoundManager.h"
 
 @interface FPObstacleLayer()
 
@@ -154,6 +155,7 @@ static NSString *const kFPKeyCollectableStar = @"starGold";
         
         ((FPCollectable *)sprite).pointValue = 1;
         ((FPCollectable *)sprite).delegate = self.collectableDelegate;
+        ((FPCollectable *)sprite).collectionSound = [Sound soundNamed:@"Collect.caf"] ;
         
         sprite.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:0.3];
         sprite.physicsBody.categoryBitMask = kFPCategoryCollectable;
