@@ -24,7 +24,7 @@
 - (void)setCollectionSound:(Sound *)collectionSound
 {
     _collectionSound = collectionSound;
-    _collectionSound.volume = 0.4;
+    _collectionSound.volume = 0.1;
 }
 
 @end

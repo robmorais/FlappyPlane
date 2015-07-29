@@ -16,6 +16,7 @@
 @property (nonatomic) NSMutableArray *planeAnimations;
 @property (nonatomic) SKEmitterNode *puffTrailEmitter;
 @property (nonatomic) CGFloat puffTrailBirthrate;
+@property (nonatomic) Sound *engineSound;
 
 @end
 
@@ -70,6 +71,10 @@ static const CGFloat kFPMaxAltitude = 300.0;
         self.puffTrailBirthrate = _puffTrailEmitter.particleBirthRate;
         self.puffTrailEmitter.particleBirthRate = 0.0;
         
+        // Setup engine sound
+        _engineSound = [Sound soundNamed:@"Engine.caf"];
+        _engineSound.looping = YES;
+        
         [self setRandomColour];
     }
     
@@ -118,11 +123,15 @@ static const CGFloat kFPMaxAltitude = 300.0;
     _engineRunning = engineRunning && !self.crashed;
     
     if (engineRunning) {
+        [self.engineSound play];
+        [self.engineSound fadeIn:1.0];
+        
         [self actionForKey:kFPPlaneAnimationKey].speed = 1.0;
         self.puffTrailEmitter.particleBirthRate = self.puffTrailBirthrate;
         self.puffTrailEmitter.targetNode = self.parent;
     }
     else {
+        [self.engineSound fadeOut:0.5];
         [self actionForKey:kFPPlaneAnimationKey].speed = 0.0;
         self.puffTrailEmitter.particleBirthRate = 0.0;
     }
@@ -172,6 +181,7 @@ static const CGFloat kFPMaxAltitude = 300.0;
     }
     if (!self.crashed) {
         self.zRotation = fmaxf(fminf(self.physicsBody.velocity.dy, 400.0),-400.0) / 400.0;
+        self.engineSound.volume = 0.25 + (fmaxf(fminf(self.physicsBody.velocity.dy, 300.0),0) / 300.0) * 0.75;
     }
 }
 
