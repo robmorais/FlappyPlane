@@ -7,11 +7,13 @@
 //
 
 #import "FPWeatherLayer.h"
+#import "SoundManager.h"
 
 @interface FPWeatherLayer()
 
 @property (nonatomic) SKEmitterNode *rainEmitter;
 @property (nonatomic) SKEmitterNode *snowEmitter;
+@property (nonatomic) Sound *rainSound;
 
 @end
 
@@ -33,6 +35,11 @@
         NSString *snowEffectPath = [[NSBundle mainBundle] pathForResource:@"SnowEffect" ofType:@"sks"];
         _snowEmitter = [NSKeyedUnarchiver unarchiveObjectWithFile:snowEffectPath];
         _snowEmitter.position = CGPointMake(size.width * 0.5, size.height + 5);
+        
+        // Setup rain sound
+        _rainSound = [Sound soundNamed:@"Rain.caf"];
+        _rainSound.looping = YES;
+        _rainSound.volume = 0.7;
     }
     
     return self;
@@ -42,14 +49,19 @@
 {
     if (_conditions != conditions) {
         _conditions = conditions;
+        
         // Remove existing weather conditions
         [self removeAllChildren];
+        if (self.rainSound.playing) {
+            [self.rainSound fadeOut:0.5];
+        }
         
         // Add weather conditions
         switch (conditions) {
             case WeatherRain:
                 [self addChild:self.rainEmitter];
                 [self.rainEmitter advanceSimulationTime:5];
+                [self.rainSound play];
                 break;
                 
             case WeatherSnow:
