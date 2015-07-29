@@ -10,6 +10,7 @@
 #import "FPConstants.h"
 #import "FPBitmapFontLabel.h"
 #import "FPButton.h"
+#import "SoundManager.h"
 
 @interface FPGameOverMenu()
 @property (nonatomic) SKSpriteNode *medalDisplay;
@@ -93,6 +94,7 @@
         _playButton = [FPButton spriteNodeWithTexture:[atlas textureNamed:@"buttonPlay"]];
         _playButton.position = CGPointMake(CGRectGetMidX(panelBG.frame), CGRectGetMinY(panelBG.frame) - 25);
         [_playButton setPressedTarget:self withAction:@selector(pressedPlayButton)];
+        _playButton.pressedSound = [Sound soundNamed:@"Click.caf"];
         [self addChild:_playButton];
         
         // Set initial values

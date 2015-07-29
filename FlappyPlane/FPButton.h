@@ -8,11 +8,13 @@
 
 #import <SpriteKit/SpriteKit.h>
 
+@class Sound;
+
 @interface FPButton : SKSpriteNode
 
 @property (nonatomic, readonly, weak) id pressedTarget;
 @property (nonatomic, readonly) SEL pressedAction;
-
+@property (nonatomic) Sound *pressedSound;
 @property (nonatomic) CGFloat pressedScale;
 
 - (void)setPressedTarget:(id)pressedTarget withAction:(SEL)pressedAction;

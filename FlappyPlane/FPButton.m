@@ -8,11 +8,12 @@
 
 #import "FPButton.h"
 #import <objc/message.h>
+#import "SoundManager.h"
 
 @interface FPButton()
 
 @property (nonatomic) CGRect fullSizeFrame;
-
+@property (nonatomic) BOOL pressed;
 @end
 
 @implementation FPButton
@@ -48,16 +49,22 @@
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
     for (UITouch *touch in touches) {
-        if (CGRectContainsPoint(self.fullSizeFrame, [touch locationInNode:self.parent])) {
-            [self setScale:self.pressedScale];
-        } else {
-            [self setScale:1.0];
+        if (self.pressed != CGRectContainsPoint(self.fullSizeFrame, [touch locationInNode:self.parent])) {
+            self.pressed = !self.pressed;
+            
+            if (self.pressed) {
+                [self setScale:self.pressedScale];
+                [self.pressedSound play];
+            } else {
+                [self setScale:1.0];
+            }
         }
     }
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    self.pressed = NO;
     [self setScale:1.0];
     for (UITouch *touch in touches) {
         if (CGRectContainsPoint(self.fullSizeFrame, [touch locationInNode:self.parent])) {
@@ -70,6 +77,7 @@
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    self.pressed = NO;
     [self setScale:1.0];
 }
 
