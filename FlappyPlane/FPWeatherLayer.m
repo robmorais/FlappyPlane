@@ -59,9 +59,10 @@
         // Add weather conditions
         switch (conditions) {
             case WeatherRain:
+                [self.rainSound play];
+                [self.rainSound fadeIn:0.5];
                 [self addChild:self.rainEmitter];
                 [self.rainEmitter advanceSimulationTime:5];
-                [self.rainSound play];
                 break;
                 
             case WeatherSnow:
