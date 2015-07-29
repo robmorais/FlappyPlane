@@ -14,6 +14,7 @@
 #import "FPConstants.h"
 #import "FPBitmapFontLabel.h"
 #import "FPTilesetTextureProvider.h"
+#import "SoundManager.h"
 
 typedef enum : NSUInteger {
     GameReady,
@@ -46,6 +47,9 @@ static NSString *const kFPKeyBestScore = @"FPBestScore";
 
 -(void)didMoveToView:(SKView *)view {
     //self.size = view.bounds.size; // BUG FIX option 2
+    
+    // Initialize SoundManager
+    [[SoundManager sharedManager] prepareToPlayWithSound:@"Engine.caf"];
     
     // Set background color to Sky Blue
     self.backgroundColor = [SKColor colorWithRed:213./255. green:237./255. blue:247./255. alpha:1.0];

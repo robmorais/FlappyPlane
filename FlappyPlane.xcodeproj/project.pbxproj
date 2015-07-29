@@ -22,7 +22,11 @@
 		A58571601B347297001A67A8 /* FPBitmapFontLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A585715F1B347297001A67A8 /* FPBitmapFontLabel.m */; };
 		A59521B91B0B5C8000DD124D /* FPScrollingNode.m in Sources */ = {isa = PBXBuildFile; fileRef = A59521B81B0B5C8000DD124D /* FPScrollingNode.m */; };
 		A5ADFC941B68C750008714F1 /* SoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A5ADFC931B68C750008714F1 /* SoundManager.m */; };
-		A5ADFC9C1B68CC14008714F1 /* Audio in Resources */ = {isa = PBXBuildFile; fileRef = A5ADFC9B1B68CC14008714F1 /* Audio */; };
+		A5ADFCA21B68CD45008714F1 /* Crunch.caf in Resources */ = {isa = PBXBuildFile; fileRef = A5ADFCA11B68CD45008714F1 /* Crunch.caf */; };
+		A5ADFCA71B68CD5A008714F1 /* Click.caf in Resources */ = {isa = PBXBuildFile; fileRef = A5ADFCA31B68CD5A008714F1 /* Click.caf */; };
+		A5ADFCA81B68CD5A008714F1 /* Collect.caf in Resources */ = {isa = PBXBuildFile; fileRef = A5ADFCA41B68CD5A008714F1 /* Collect.caf */; };
+		A5ADFCA91B68CD5A008714F1 /* Engine.caf in Resources */ = {isa = PBXBuildFile; fileRef = A5ADFCA51B68CD5A008714F1 /* Engine.caf */; };
+		A5ADFCAA1B68CD5A008714F1 /* Rain.caf in Resources */ = {isa = PBXBuildFile; fileRef = A5ADFCA61B68CD5A008714F1 /* Rain.caf */; };
 		A5D9857A1AF8D43100685269 /* PlanePuffTrail.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5D985781AF8D43100685269 /* PlanePuffTrail.sks */; };
 		A5E015BD1B0B75E800184787 /* FPScrollingLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E015BC1B0B75E800184787 /* FPScrollingLayer.m */; };
 		A5E27A311AF1391500225A19 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E27A301AF1391500225A19 /* main.m */; };
@@ -73,7 +77,11 @@
 		A59521B81B0B5C8000DD124D /* FPScrollingNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPScrollingNode.m; sourceTree = "<group>"; };
 		A5ADFC921B68C750008714F1 /* SoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundManager.h; sourceTree = "<group>"; };
 		A5ADFC931B68C750008714F1 /* SoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundManager.m; sourceTree = "<group>"; };
-		A5ADFC9B1B68CC14008714F1 /* Audio */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Audio; sourceTree = "<group>"; };
+		A5ADFCA11B68CD45008714F1 /* Crunch.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Crunch.caf; sourceTree = "<group>"; };
+		A5ADFCA31B68CD5A008714F1 /* Click.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Click.caf; sourceTree = "<group>"; };
+		A5ADFCA41B68CD5A008714F1 /* Collect.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Collect.caf; sourceTree = "<group>"; };
+		A5ADFCA51B68CD5A008714F1 /* Engine.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Engine.caf; sourceTree = "<group>"; };
+		A5ADFCA61B68CD5A008714F1 /* Rain.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Rain.caf; sourceTree = "<group>"; };
 		A5D985781AF8D43100685269 /* PlanePuffTrail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = PlanePuffTrail.sks; sourceTree = "<group>"; };
 		A5E015BB1B0B75E800184787 /* FPScrollingLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPScrollingLayer.h; sourceTree = "<group>"; };
 		A5E015BC1B0B75E800184787 /* FPScrollingLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPScrollingLayer.m; sourceTree = "<group>"; };
@@ -148,11 +156,22 @@
 		A5703FAE1AF2910700B2632C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A5ADFC9B1B68CC14008714F1 /* Audio */,
 				A5703FAF1AF2912700B2632C /* PlaneAnimations.plist */,
 				A5000A3A1B3D4306008EE5A6 /* TilesetGraphics.plist */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		A5ADFCA01B68CD35008714F1 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				A5ADFCA11B68CD45008714F1 /* Crunch.caf */,
+				A5ADFCA31B68CD5A008714F1 /* Click.caf */,
+				A5ADFCA41B68CD5A008714F1 /* Collect.caf */,
+				A5ADFCA51B68CD5A008714F1 /* Engine.caf */,
+				A5ADFCA61B68CD5A008714F1 /* Rain.caf */,
+			);
+			name = Sounds;
 			sourceTree = "<group>";
 		};
 		A5D985731AF8CE0400685269 /* Particle Effects */ = {
@@ -187,6 +206,7 @@
 		A5E27A2D1AF1391500225A19 /* FlappyPlane */ = {
 			isa = PBXGroup;
 			children = (
+				A5ADFCA01B68CD35008714F1 /* Sounds */,
 				A5E27A2E1AF1391500225A19 /* Supporting Files */,
 				A5703FAE1AF2910700B2632C /* Resources */,
 				A56AE97F1AF14BA300063434 /* Graphics.atlas */,
@@ -332,17 +352,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5E27A441AF1391500225A19 /* LaunchScreen.xib in Resources */,
+				A5ADFCA81B68CD5A008714F1 /* Collect.caf in Resources */,
+				A5ADFCA21B68CD45008714F1 /* Crunch.caf in Resources */,
 				A5E27A411AF1391500225A19 /* Images.xcassets in Resources */,
 				A5000A3B1B3D4306008EE5A6 /* TilesetGraphics.plist in Resources */,
-				A5ADFC9C1B68CC14008714F1 /* Audio in Resources */,
+				A5ADFCA71B68CD5A008714F1 /* Click.caf in Resources */,
 				A583460E1B66267A00A0172E /* RainEffect.sks in Resources */,
 				A5703FB01AF2912700B2632C /* PlaneAnimations.plist in Resources */,
 				A583460B1B6625A700A0172E /* SnowEffect.sks in Resources */,
 				A583460C1B6625A700A0172E /* spark.png in Resources */,
+				A5ADFCAA1B68CD5A008714F1 /* Rain.caf in Resources */,
 				A5E27A391AF1391500225A19 /* GameScene.sks in Resources */,
 				A56AE9801AF14BA300063434 /* Graphics.atlas in Resources */,
 				A5D9857A1AF8D43100685269 /* PlanePuffTrail.sks in Resources */,
 				A5E27A3F1AF1391500225A19 /* Main.storyboard in Resources */,
+				A5ADFCA91B68CD5A008714F1 /* Engine.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
