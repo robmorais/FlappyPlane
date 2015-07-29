@@ -9,6 +9,7 @@
 #import "FPPlane.h"
 #import "FPConstants.h"
 #import "FPCollectable.h"
+#import "SoundManager.h"
 
 @interface FPPlane()
 
@@ -154,6 +155,7 @@ static const CGFloat kFPMaxAltitude = 300.0;
         if (body.categoryBitMask == kFPCategoryGround) {
             // Hit the ground
             self.crashed = YES;
+            [[SoundManager sharedManager] playSound:@"Crunch.caf"];
         }
         if (body.categoryBitMask == kFPCategoryCollectable) {
             if ([body.node respondsToSelector:@selector(collect)]) {
